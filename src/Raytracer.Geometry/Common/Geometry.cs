@@ -1,6 +1,9 @@
 ﻿namespace Raytracer.Geometry.Common
 {
-    interface IGeometry<T, TVec3, TColor>
+    interface IGeometry<T, TVec3, TColor> 
+        where T: struct
+        where TVec3: struct
+        where TColor: struct
     {
         T Sqrt(T value);
         T Pow(T @base, int exp);
