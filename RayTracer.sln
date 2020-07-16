@@ -3,9 +3,40 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracer.Console", "src\RayTracer.Console\RayTracer.Console.csproj", "{8B2E0C14-3934-41C6-A4B4-3DA9304C14E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{588142FE-3748-4B27-85CB-5A174C6A59CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raytracer.Geometry", "src\Raytracer.Geometry\Raytracer.Geometry.csproj", "{A4EB5F1B-E147-42AC-AA53-D5D4A17C2A62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raytracer", "src\Raytracer\Raytracer.csproj", "{E4229E30-5DCD-4C27-8B1D-733BDA9641C8}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B2E0C14-3934-41C6-A4B4-3DA9304C14E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B2E0C14-3934-41C6-A4B4-3DA9304C14E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B2E0C14-3934-41C6-A4B4-3DA9304C14E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B2E0C14-3934-41C6-A4B4-3DA9304C14E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4EB5F1B-E147-42AC-AA53-D5D4A17C2A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4EB5F1B-E147-42AC-AA53-D5D4A17C2A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4EB5F1B-E147-42AC-AA53-D5D4A17C2A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4EB5F1B-E147-42AC-AA53-D5D4A17C2A62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4229E30-5DCD-4C27-8B1D-733BDA9641C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4229E30-5DCD-4C27-8B1D-733BDA9641C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4229E30-5DCD-4C27-8B1D-733BDA9641C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4229E30-5DCD-4C27-8B1D-733BDA9641C8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8B2E0C14-3934-41C6-A4B4-3DA9304C14E6} = {588142FE-3748-4B27-85CB-5A174C6A59CC}
+		{A4EB5F1B-E147-42AC-AA53-D5D4A17C2A62} = {588142FE-3748-4B27-85CB-5A174C6A59CC}
+		{E4229E30-5DCD-4C27-8B1D-733BDA9641C8} = {588142FE-3748-4B27-85CB-5A174C6A59CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3B4FE03-716F-4490-ACA7-3E39AC06D991}
