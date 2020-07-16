@@ -5,14 +5,14 @@
         where TVec3: struct
         where TColor: struct
     {
-        T Sqrt(T value);
-        T Pow(T @base, int exp);
-        T Floor(T value);
-        T Clamp(T value, T min, T max);
-        T Dot(TVec3 left, TVec3 right);
-        T Mag(TVec3 vector);
-        TVec3 Norm(TVec3 vector);
-        TVec3 Cross(TVec3 left, TVec3 right);
-        TColor Scale(T value, TColor color);
+        T Sqrt(in T value);
+        T Pow(in T @base, int exp);
+        T Floor(in T value);
+        T Clamp(in T value, in T min, in T max);
+        T Dot(in TVec3 left, in TVec3 right);
+        T Mag(in TVec3 vector);
+        TVec3 Norm(in TVec3 vector);
+        TVec3 Cross(in TVec3 left, in TVec3 right);
+        TColor Scale(in T value, in TColor color);
     }
 }

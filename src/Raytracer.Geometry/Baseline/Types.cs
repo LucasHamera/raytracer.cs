@@ -1,10 +1,10 @@
 ﻿namespace Raytracer.Geometry.Baseline
 {
-    struct Color
+    public readonly struct Color
     {
-        public float R;
-        public float G;
-        public float B;
+        public readonly float R;
+        public readonly float G;
+        public readonly float B;
 
         public Color(float r, float g, float b)
         {
@@ -14,11 +14,11 @@
         }
     }
 
-    struct Vec3
+    public readonly struct Vec3
     {
-        public float X;
-        public float Y;
-        public float Z;
+        public readonly float X;
+        public readonly float Y;
+        public readonly float Z;
 
         public Vec3(float x, float y, float z)
         {
