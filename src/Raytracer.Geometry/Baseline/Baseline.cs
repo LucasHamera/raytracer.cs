@@ -2,7 +2,7 @@
 
 namespace Raytracer.Geometry.Baseline
 {
-    class BaselineGeometry : IGeometry<float, Vec3, Color>
+    public class BaselineGeometry : IGeometry<float, Vec3, Color>
     {
         public float Sqrt(in float value)
         {
@@ -30,7 +30,7 @@ namespace Raytracer.Geometry.Baseline
             return val;
         }
 
-        public float Floor(in float value) => value >= 0 ? value : value - 1.0f;
+        public float Floor(in float value) => (int) (value >= 0 ? value : value - 1.0f);
 
         public float Clamp(in float value, in float min, in float max)
         {
@@ -39,7 +39,7 @@ namespace Raytracer.Geometry.Baseline
             return value;
         }
 
-        public float Dot(in Vec3 left,in Vec3 right) => left.X * right.X + left.Y * right.Y + left.Z * right.Z;
+        public float Dot(in Vec3 left, in Vec3 right) => left.X * right.X + left.Y * right.Y + left.Z * right.Z;
         public float Mag(in Vec3 vector) => Sqrt(Dot(vector, vector));
 
         public Vec3 Norm(in Vec3 vector)

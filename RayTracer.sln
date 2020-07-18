@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raytracer.Geometry", "src\R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raytracer", "src\Raytracer\Raytracer.csproj", "{E4229E30-5DCD-4C27-8B1D-733BDA9641C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracer.Geometry.Tests", "src\RayTracer.Geometry.Tests\RayTracer.Geometry.Tests.csproj", "{0C75C21D-C4E2-4321-936C-F9B9B7C83E9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{E4229E30-5DCD-4C27-8B1D-733BDA9641C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4229E30-5DCD-4C27-8B1D-733BDA9641C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4229E30-5DCD-4C27-8B1D-733BDA9641C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C75C21D-C4E2-4321-936C-F9B9B7C83E9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C75C21D-C4E2-4321-936C-F9B9B7C83E9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C75C21D-C4E2-4321-936C-F9B9B7C83E9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C75C21D-C4E2-4321-936C-F9B9B7C83E9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,6 +43,7 @@ Global
 		{8B2E0C14-3934-41C6-A4B4-3DA9304C14E6} = {588142FE-3748-4B27-85CB-5A174C6A59CC}
 		{A4EB5F1B-E147-42AC-AA53-D5D4A17C2A62} = {588142FE-3748-4B27-85CB-5A174C6A59CC}
 		{E4229E30-5DCD-4C27-8B1D-733BDA9641C8} = {588142FE-3748-4B27-85CB-5A174C6A59CC}
+		{0C75C21D-C4E2-4321-936C-F9B9B7C83E9E} = {588142FE-3748-4B27-85CB-5A174C6A59CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3B4FE03-716F-4490-ACA7-3E39AC06D991}
