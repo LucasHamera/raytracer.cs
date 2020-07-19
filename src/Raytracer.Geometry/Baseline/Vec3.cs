@@ -1,6 +1,5 @@
 ﻿namespace Raytracer.Geometry.Baseline
 {
-
     public readonly struct Vec3
     {
         public readonly float X;
