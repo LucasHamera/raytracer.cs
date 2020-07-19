@@ -9,6 +9,6 @@
       <PackageReference Include="xunit.runner.visualstudio" Version="2.4.2" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\Raytracer.Geometry\Raytracer.Geometry.csproj" />
+      <ProjectReference Include="..\..\src\Raytracer.Geometry\Raytracer.Geometry.csproj" />
     </ItemGroup>
 </Project>
