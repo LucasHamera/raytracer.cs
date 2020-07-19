@@ -2,7 +2,7 @@
 
 namespace Raytracer.Geometry.Common
 {
-    public  readonly struct Optional<T>
+    public readonly struct Optional<T>
     {
         public readonly T Value;
         public readonly bool HasValue;
