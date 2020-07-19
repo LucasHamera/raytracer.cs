@@ -1,4 +1,6 @@
-﻿namespace Raytracer.Geometry.Common
+﻿using System.Runtime.CompilerServices;
+
+namespace Raytracer.Geometry.Common
 {
     public interface ISurface<out T, TVec3, TColor>
         where T : struct
@@ -7,6 +9,7 @@
     {
         public int Roughness
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get;
         }
 
