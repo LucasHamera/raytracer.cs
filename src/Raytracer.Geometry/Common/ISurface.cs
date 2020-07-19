@@ -1,6 +1,6 @@
 ﻿namespace Raytracer.Geometry.Common
 {
-    public interface ISurface<out T, TVec3, out TColor>
+    public interface ISurface<out T, TVec3, TColor>
         where T : struct
         where TVec3 : struct
         where TColor : struct
@@ -10,8 +10,8 @@
             get;
         }
 
-        TColor Diffuse(in TVec3 position);
-        TColor Specular(in TVec3 position);
+        ref TColor Diffuse(in TVec3 position);
+        ref TColor Specular(in TVec3 position);
         T Reflect(in TVec3 position);
     }
 }
