@@ -2,7 +2,7 @@
 
 namespace Raytracer.Geometry.Baseline
 {
-    public class BaselineGeometry : IGeometry<float, Vec3, Color>
+    public struct BaselineGeometry : IGeometry<float, Vec3, Color>
     {
         public float Sqrt(in float value)
         {
