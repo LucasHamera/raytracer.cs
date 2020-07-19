@@ -15,7 +15,6 @@ namespace Raytracer.Geometry.Baseline
             {
                 return ref Color.White;
             }
-
             return ref Color.Black;
         }
 
@@ -26,13 +25,9 @@ namespace Raytracer.Geometry.Baseline
         {
             var geometry = new BaselineGeometry();
 
-
-            if ((int) (geometry.Floor(position.Z) + geometry.Floor(position.X)) % 2 != 0)
-            {
-                return 0.1f;
-            }
-
-            return 0.7f;
+            return (int) (geometry.Floor(position.Z) + geometry.Floor(position.X)) % 2 != 0 
+                ? 0.1f 
+                : 0.7f;
         }
     }
 }
