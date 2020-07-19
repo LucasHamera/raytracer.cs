@@ -1,4 +1,6 @@
-﻿namespace Raytracer.Geometry.Baseline
+﻿using System.Runtime.CompilerServices;
+
+namespace Raytracer.Geometry.Baseline
 {
     public readonly struct Vec3
     {
@@ -12,5 +14,17 @@
             Y = y;
             Z = z;
         }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Vec3 operator +(in Vec3 left,in Vec3 right)
+            => new Vec3(left.X + right.X, left.Y + right.Y, left.Z + right.Z);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Vec3 operator -(in Vec3 left,in Vec3 right)
+            => new Vec3(left.X - right.X, left.Y - right.Y, left.Z - right.Z);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Vec3 operator *(in float left,in Vec3 right)
+            => new Vec3(left * right.X, left * right.Y, left * right.Z);
     }
 }
