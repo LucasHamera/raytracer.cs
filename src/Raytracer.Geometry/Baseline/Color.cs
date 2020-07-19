@@ -12,5 +12,23 @@
             G = g;
             B = b;
         }
+
+        private static Color _white = new Color(1.0f,1.0f,1.0f);
+        public static ref Color White 
+            => ref _white;
+
+        private static Color _gray = new Color(0.5f, 0.5f, 0.5f);
+        public static ref Color Gray
+            => ref _gray;
+
+        private static Color _black = new Color(0.0f, 0.0f, 0.0f);
+        public static ref Color Black
+            => ref _black;
+        
+        public static ref Color Background
+            => ref _black;
+
+        public static ref Color DefaultColor
+            => ref _black;
     }
 }
