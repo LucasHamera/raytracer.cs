@@ -4,7 +4,7 @@ using Raytracer.Geometry.Common;
 namespace Raytracer.Geometry.Baseline
 {
     public readonly struct Intersection<THitable, TSurface>
-        where THitable: struct, IHitable<TSurface, THitable>
+        where THitable : struct, IHitable<TSurface, THitable>
         where TSurface : struct, ISurface<float, Vec3, Color>
     {
         public readonly THitable Thing;
