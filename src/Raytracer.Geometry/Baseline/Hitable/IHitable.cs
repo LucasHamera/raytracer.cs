@@ -4,7 +4,7 @@ using Raytracer.Geometry.Common;
 namespace Raytracer.Geometry.Baseline.Hitable
 {
     public interface IHitable<TSurface, THitable>
-        where TSurface: struct, ISurface<float, Vec3, Color>
+        where TSurface : struct, ISurface<float, Vec3, Color>
         where THitable : struct, IHitable<TSurface, THitable>
     {
         public TSurface Surface
