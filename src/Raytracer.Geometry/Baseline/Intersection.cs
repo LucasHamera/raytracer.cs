@@ -1,13 +1,11 @@
-﻿using Raytracer.Geometry.Common;
+﻿using Raytracer.Geometry.Baseline.Hitable;
+using Raytracer.Geometry.Common;
 
 namespace Raytracer.Geometry.Baseline
 {
-    public readonly struct Intersection<THitable, TSurface, T, TVec3, TColor>
-        where THitable: struct, IHitable<TSurface, T, TVec3, TColor>
-        where TSurface : struct, ISurface<T, TVec3, TColor>
-        where T : struct
-        where TVec3 : struct
-        where TColor : struct
+    public readonly struct Intersection<THitable, TSurface>
+        where THitable: struct, IHitable<TSurface, THitable>
+        where TSurface : struct, ISurface<float, Vec3, Color>
     {
         public readonly THitable Thing;
         public readonly Ray Ray;
