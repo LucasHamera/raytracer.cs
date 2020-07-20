@@ -21,7 +21,7 @@ namespace Raytracer.Geometry.Common
         public static explicit operator bool(in Optional<T> optional) 
             => optional.HasValue;
 
-        public static explicit operator Optional<T>(T value)
+        public static explicit operator Optional<T>(in T value)
             => new Optional<T>(value);
     }
 }
