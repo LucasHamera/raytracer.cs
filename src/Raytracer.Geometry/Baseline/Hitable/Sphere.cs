@@ -11,12 +11,12 @@ namespace Raytracer.Geometry.Baseline.Hitable
         private readonly Vec3 _centre;
         private readonly float _radius2;
 
-        public Sphere(in Vec3 centre, in float radius2) : this()
+        public Sphere(in Vec3 centre, in float radius) : this()
         {
             _geometry = new BaselineGeometry();
 
             _centre = centre;
-            _radius2 = radius2;
+            _radius2 = radius * radius;
         }
 
         public TSurface Surface
