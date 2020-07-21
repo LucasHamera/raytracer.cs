@@ -1,4 +1,5 @@
 ﻿using Raytracer.Canvas;
+using Raytracer.Canvas.Extensions;
 using Raytracer.Geometry.Baseline.Scenes;
 
 namespace RayTracer.Console
@@ -11,6 +12,7 @@ namespace RayTracer.Console
             var canvas = new Canvas(256, 256);
             var scene = new MyScene();
             tracer.Render(scene, canvas);
+            canvas.ToFile("output.png");
         }
     }
 }
