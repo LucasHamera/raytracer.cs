@@ -5,7 +5,7 @@
         public readonly Vec3 Position;
         public readonly Color Color;
 
-        public Light(Vec3 position, Color color)
+        public Light(in Vec3 position, in Color color)
         {
             Position = position;
             Color = color;
