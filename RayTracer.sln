@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{139FA229
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayTracer.Geometry.Tests", "tests\RayTracer.Geometry.Tests\RayTracer.Geometry.Tests.csproj", "{EDA71033-11CD-448C-8626-E1A3C4009F50}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmarks", "benchmarks", "{C46F6C9C-3E13-45D7-B0DD-8C11851CA577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raytracer.Benchmark", "benchmarks\Raytracer.Benchmark\Raytracer.Benchmark.csproj", "{9704E157-F3DB-418B-B168-EDBF482D7A63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,10 @@ Global
 		{EDA71033-11CD-448C-8626-E1A3C4009F50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDA71033-11CD-448C-8626-E1A3C4009F50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDA71033-11CD-448C-8626-E1A3C4009F50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9704E157-F3DB-418B-B168-EDBF482D7A63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9704E157-F3DB-418B-B168-EDBF482D7A63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9704E157-F3DB-418B-B168-EDBF482D7A63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9704E157-F3DB-418B-B168-EDBF482D7A63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +54,7 @@ Global
 		{A4EB5F1B-E147-42AC-AA53-D5D4A17C2A62} = {588142FE-3748-4B27-85CB-5A174C6A59CC}
 		{E4229E30-5DCD-4C27-8B1D-733BDA9641C8} = {588142FE-3748-4B27-85CB-5A174C6A59CC}
 		{EDA71033-11CD-448C-8626-E1A3C4009F50} = {139FA229-6194-4E73-84E7-796E7A89BCD9}
+		{9704E157-F3DB-418B-B168-EDBF482D7A63} = {C46F6C9C-3E13-45D7-B0DD-8C11851CA577}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3B4FE03-716F-4490-ACA7-3E39AC06D991}
