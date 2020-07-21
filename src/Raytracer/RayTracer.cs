@@ -1,9 +1,10 @@
-﻿using Raytracer.Geometry.Baseline;
+﻿using Raytracer.Canvas;
+using Raytracer.Geometry.Baseline;
 using Raytracer.Geometry.Baseline.Hitable;
 using Raytracer.Geometry.Baseline.Scenes;
 using Raytracer.Geometry.Common;
 
-namespace Raytracer
+namespace RayTracer
 {
     public class RayTracer
     {
@@ -104,12 +105,12 @@ namespace Raytracer
             return _geometry.Norm(cam.Forward + (recenterX * cam.Right + recenterY * cam.Up));
         }
 
-        public void Render(MyScene scene, Canvas.Canvas canvas, int width, int height)
+        public void Render(MyScene scene, Canvas canvas)
         {
-            for (int y = 0; y < height; y++)
-            for (int x = 0; x < width; x++)
+            for (int y = 0; y < canvas.Height; y++)
+            for (int x = 0; x < canvas.Width; x++)
             {
-                var point = Point(width, height, x, y, scene.Camera);
+                var point = Point(canvas.Width, canvas.Height, x, y, scene.Camera);
                 var color = TraceRay(new Ray(scene.Camera.Position, point), scene, 0);
                 canvas[x, y] = color;
             }
