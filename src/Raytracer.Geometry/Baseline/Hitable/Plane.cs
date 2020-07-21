@@ -3,7 +3,7 @@ using Raytracer.Geometry.Common;
 
 namespace Raytracer.Geometry.Baseline.Hitable
 {
-    public readonly struct Plane<TSurface> : IHitable<TSurface, Plane<TSurface>>
+    public readonly struct Plane<TSurface> : IHitable
         where TSurface : struct, ISurface<float, Vec3, Color>
     {
         private readonly BaselineGeometry _geometry;
@@ -19,23 +19,23 @@ namespace Raytracer.Geometry.Baseline.Hitable
             Surface = surface;
         }
 
-        public TSurface Surface 
-        { 
+        public ISurface<float, Vec3, Color> Surface
+        {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get;
         }
 
-        public Optional<Intersection<Plane<TSurface>, TSurface>> Intersect(in Ray ray)
+        public Optional<Intersection> Intersect(in Ray ray)
         {
             var denom = _geometry.Dot(_normal, ray.Direction);
             if (denom > 0.0f)
-                return new Optional<Intersection<Plane<TSurface>, TSurface>>();
+                return new Optional<Intersection>();
             
             var distance = (_geometry.Dot(_normal, ray.Start) + _offset) / (-denom);
-            var intersection = new Intersection<Plane<TSurface>, TSurface>(
+            var intersection = new Intersection(
                 this, ray, distance
             );
-            return new Optional<Intersection<Plane<TSurface>, TSurface>>(intersection);
+            return new Optional<Intersection>(intersection);
         }
 
         public Vec3 Normal(in Vec3 position)
