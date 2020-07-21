@@ -7,7 +7,7 @@ namespace Raytracer.Geometry.Baseline.Scenes
 {
     public class MyScene
     {
-        private readonly Ligth[] _ligths;
+        private readonly Light[] _lights;
 
         public MyScene()
         {
@@ -20,12 +20,12 @@ namespace Raytracer.Geometry.Baseline.Scenes
                 new Sphere<Shiny>(new Vec3(-1.0f, 0.5f, 1.5f), 0.5f, new Shiny()),
             };
 
-            _ligths = new[]
+            _lights = new[]
             {
-                new Ligth(new Vec3(-2.0f, 2.5f, 0.0f), new Color(0.49f, 0.07f, 0.07f)),
-                new Ligth(new Vec3(1.5f, 2.5f, 1.5f), new Color(0.07f, 0.07f, 0.49f)),
-                new Ligth(new Vec3(1.5f, 2.5f, -1.5f), new Color(0.07f, 0.49f, 0.071f)),
-                new Ligth(new Vec3(0.0f, 3.5f, 0.0f), new Color(0.21f, 0.21f, 0.35f))
+                new Light(new Vec3(-2.0f, 2.5f, 0.0f), new Color(0.49f, 0.07f, 0.07f)),
+                new Light(new Vec3(1.5f, 2.5f, 1.5f), new Color(0.07f, 0.07f, 0.49f)),
+                new Light(new Vec3(1.5f, 2.5f, -1.5f), new Color(0.07f, 0.49f, 0.071f)),
+                new Light(new Vec3(0.0f, 3.5f, 0.0f), new Color(0.21f, 0.21f, 0.35f))
             };
         }
 
@@ -35,10 +35,10 @@ namespace Raytracer.Geometry.Baseline.Scenes
             get;
         }
 
-        public ReadOnlySpan<Ligth> Ligths
+        public ReadOnlySpan<Light> Lights
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => _ligths;
+            get => _lights;
         }
 
         public Camera Camera
