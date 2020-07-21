@@ -13,12 +13,12 @@ namespace Raytracer.Geometry.Baseline.Scenes
         {
             Camera = new Camera(new Vec3(3.0f, 2.0f, 4.0f), new Vec3(-1.0f, 0.5f, 0.0f));
 
-            Things = new ImmutableArray<IHitable>
+            Things = ImmutableArray.Create(new IHitable[]
             {
                 new Plane<Checkerboard>(new Vec3(0.0f, 1.0f, 0.0f), 0.0f, new Checkerboard()),
                 new Sphere<Shiny>(new Vec3(0.0f, 1.0f, -0.25f), 1.0f, new Shiny()),
                 new Sphere<Shiny>(new Vec3(-1.0f, 0.5f, 1.5f), 0.5f, new Shiny()),
-            };
+            });
 
             _lights = new[]
             {

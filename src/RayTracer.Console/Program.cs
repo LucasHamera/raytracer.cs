@@ -1,10 +1,18 @@
-﻿namespace RayTracer.Console
+﻿using Raytracer.Canvas;
+using Raytracer.Canvas.Extensions;
+using Raytracer.Geometry.Baseline.Scenes;
+
+namespace RayTracer.Console
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
-            System.Console.WriteLine("Hello World");
+            var tracer = new RayTracer();
+            var canvas = new Canvas(256, 256);
+            var scene = new MyScene();
+            tracer.Render(scene, canvas);
+            canvas.ToFile("output.png");
         }
     }
 }

@@ -23,15 +23,15 @@ namespace Raytracer.Canvas.Extensions
             var floatValues = MemoryMarshal.Cast<Color, float>(colors);
 
             var bitmapData = outBitmap.LockBits(
-                new Rectangle(Point.Empty, outBitmap.Size), 
-                ImageLockMode.WriteOnly, 
+                new Rectangle(Point.Empty, outBitmap.Size),
+                ImageLockMode.WriteOnly,
                 outBitmap.PixelFormat
             );
             try
             {
                 unsafe
                 {
-                    var bytesPtr = (byte*)bitmapData.Scan0.ToPointer();
+                    var bytesPtr = (byte*) bitmapData.Scan0.ToPointer();
 
                     fixed (float* floatValuesPtr = floatValues)
                     {
@@ -40,9 +40,10 @@ namespace Raytracer.Canvas.Extensions
                         for (int x = 0; x < width; x++, floatIndex += 3)
                         {
                             var byteIndex = y * bitmapData.Stride + 3 * x;
-                            *(bytesPtr + byteIndex + 0) = (byte)(byte.MaxValue * *(floatValuesPtr + floatIndex + 0));
+                            // NOTE: data is stored in BGR order
+                            *(bytesPtr + byteIndex + 0) = (byte)(byte.MaxValue * *(floatValuesPtr + floatIndex + 2));
                             *(bytesPtr + byteIndex + 1) = (byte)(byte.MaxValue * *(floatValuesPtr + floatIndex + 1));
-                            *(bytesPtr + byteIndex + 2) = (byte)(byte.MaxValue * *(floatValuesPtr + floatIndex + 2));
+                            *(bytesPtr + byteIndex + 2) = (byte)(byte.MaxValue * *(floatValuesPtr + floatIndex + 0));
                         }
                     }
                 }
