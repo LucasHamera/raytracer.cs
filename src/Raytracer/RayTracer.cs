@@ -58,7 +58,7 @@ namespace Raytracer
             return naturalColor + reflectedColor;
         }
 
-        private Color ReflectionColor(IHitable thing, Vec3 pos, Vec3 rd, MyScene scene, int depth)
+        private Color ReflectionColor(IHitable thing, in Vec3 pos, in Vec3 rd, MyScene scene, int depth)
         {
             return _geometry.Scale(
                 thing.Surface.Reflect(pos),
@@ -66,7 +66,7 @@ namespace Raytracer
             );
         }
 
-        private Color AddLight(IHitable thing, Vec3 pos, Vec3 normal, Vec3 rayDir, MyScene scene, Color col,
+        private Color AddLight(IHitable thing, in Vec3 pos, in Vec3 normal, in Vec3 rayDir, MyScene scene, Color col,
             Light light)
         {
             var lightDir = light.Position - pos;
@@ -88,7 +88,7 @@ namespace Raytracer
             return col + (surf.Diffuse(pos) * lightColor + surf.Specular(pos) * specularColor);
         }
 
-        private Color NaturalColor(IHitable thing, Vec3 pos, Vec3 norm, Vec3 rd, MyScene scene)
+        private Color NaturalColor(IHitable thing, in Vec3 pos, in Vec3 norm, in Vec3 rd, MyScene scene)
         {
             var col = Color.DefaultColor;
             foreach (var light in scene.Lights)
