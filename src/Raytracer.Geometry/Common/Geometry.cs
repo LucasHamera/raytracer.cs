@@ -1,6 +1,6 @@
 ﻿namespace Raytracer.Geometry.Common
 {
-    interface IGeometry<T, TVec3, TColor> 
+    public interface IGeometry<T, TVec3, TColor> 
         where T: struct
         where TVec3: struct
         where TColor: struct

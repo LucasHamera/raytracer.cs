@@ -30,5 +30,8 @@
 
         public static ref Color DefaultColor
             => ref _black;
+        
+        public static Color operator + (Color a, Color b) => new Color(a.R + b.R, a.G + b.G, a.B + b.B);
+        public static Color operator * (Color a, Color b) => new Color(a.R * b.R, a.G * b.G, a.B * b.B);
     }
 }
