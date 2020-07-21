@@ -96,7 +96,7 @@ namespace Raytracer
             return col;
         }
 
-        private Vec3 Point(int width, int height, int x, int y, Camera cam)
+        private Vec3 Point(int width, int height, int x, int y, in Camera cam)
         {
             var recenterX = (x - (width / 2.0f)) / 2.0f / width;
             var recenterY = -(y - (height / 2.0f)) / 2.0f / height;
