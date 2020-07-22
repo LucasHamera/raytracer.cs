@@ -16,7 +16,7 @@ TODO
 - Support for AVX instructions, 
 - Improved performance after each release.
 
-Benchmarks
+Benchmark results
 ------------
 - v 1.0 - Reimplementation
 
