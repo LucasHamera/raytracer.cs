@@ -21,10 +21,23 @@ namespace Raytracer.Geometry.Baseline
         public readonly float Pow(in float @base, int exp)
         {
             var val = 1.0f;
+
+            while (exp >= 8)
+            {
+                val *= @base * @base * @base * @base * @base * @base * @base * @base;
+                exp -= 8;
+            }
+
+            if (exp >= 4)
+            {
+                val *= @base * @base * @base * @base;
+                exp -= 4;
+            }
+
             while (exp > 0)
             {
                 val *= @base;
-                exp--;
+                --exp;
             }
 
             return val;
