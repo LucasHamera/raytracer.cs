@@ -9,7 +9,7 @@ namespace RayTracer.Console
         public static void Main()
         {
             var tracer = new RayTracer();
-            var canvas = new Canvas(256, 256);
+            var canvas = new Canvas(512, 512);
             var scene = new MyScene();
             tracer.Render(scene, canvas);
             canvas.ToFile("output.png");
