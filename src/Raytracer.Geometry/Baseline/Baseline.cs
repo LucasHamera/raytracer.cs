@@ -1,4 +1,5 @@
-﻿using Raytracer.Geometry.Common;
+﻿using System;
+using Raytracer.Geometry.Common;
 
 namespace Raytracer.Geometry.Baseline
 {
@@ -9,7 +10,7 @@ namespace Raytracer.Geometry.Baseline
             var curr = value;
             var prev = 0.0f;
 
-            while (curr != prev)
+            while (Math.Abs(curr - prev) > float.Epsilon)
             {
                 prev = curr;
                 curr = 0.5f * (curr + value / curr);
