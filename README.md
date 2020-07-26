@@ -10,10 +10,10 @@ This implementation is a port of the C++ code contained in the repository at htt
 TODO
 --------
 - ~~Reimplementation~~
-- Support for multiple cores,
-- Support for multiple cores in batch mode,
-- Support for SSE instructions,
-- Support for AVX instructions, 
+- Support for multiple cores - v1.1,
+- Support for multiple cores in batch mode - v1.2,
+- Support for SSE instructions - v2.0,
+- Support for AVX instructions - v2.1, 
 - Improved performance after each release.
 
 Benchmark results
