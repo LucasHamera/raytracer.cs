@@ -1,4 +1,5 @@
-﻿using Raytracer.Canvas;
+﻿using System.Threading.Tasks;
+using Raytracer.Canvas;
 using Raytracer.Geometry.Baseline;
 using Raytracer.Geometry.Baseline.Hitable;
 using Raytracer.Geometry.Baseline.Scenes;
@@ -107,13 +108,18 @@ namespace RayTracer
 
         public void Render(MyScene scene, Canvas canvas)
         {
-            for (int y = 0; y < canvas.Height; y++)
-            for (int x = 0; x < canvas.Width; x++)
+            Parallel.For(0, canvas.Height, y =>
             {
-                var point = Point(canvas.Width, canvas.Height, x, y, scene.Camera);
-                var color = TraceRay(new Ray(scene.Camera.Position, point), scene, 0);
-                canvas[x, y] = color;
-            }
+                var height = canvas.Height;
+                var width = canvas.Width;
+
+                for (int x = 0; x < width; x++)
+                {
+                    var point = Point(width, height, x, y, scene.Camera);
+                    var color = TraceRay(new Ray(scene.Camera.Position, point), scene, 0);
+                    canvas[x, y] = color;
+                }
+            });
         }
     }
 }
