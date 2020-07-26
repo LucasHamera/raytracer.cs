@@ -11,9 +11,11 @@ TODO
 --------
 - ~~Reimplementation~~
 - Support for multiple cores - v1.1,
-- Support for multiple cores in batch mode - v1.2,
-- Support for SSE instructions - v2.0,
-- Support for AVX instructions - v2.1, 
+- Support for multiple cores in batch mode - v1.2,     
+- Support for SSE instructions - all coordinates in Vector128 (Vector128{x0, y0, z0, 1}) - v2.0,
+- Support for AVX instructions - all coordinates in Vector256 - v2.1,
+- Support for SSE instructions - single coordinate in Vector128 (Vector128{x0, x1, x2, x3}) - v3.1,
+- Support for AVX instructions - single coordinate in Vector256 - v3.1, 
 - Improved performance after each release.
 
 Benchmark results
