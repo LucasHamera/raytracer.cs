@@ -2,6 +2,7 @@
 using System.Collections.Immutable;
 using System.Runtime.CompilerServices;
 using Raytracer.Geometry.Baseline.Hitable;
+using Raytracer.Geometry.Baseline.Surfaces;
 
 namespace Raytracer.Geometry.Baseline.Scenes
 {
@@ -15,9 +16,9 @@ namespace Raytracer.Geometry.Baseline.Scenes
 
             Things = ImmutableArray.Create(new IHitable[]
             {
-                new Plane<Checkerboard>(new Vec3(0.0f, 1.0f, 0.0f), 0.0f, new Checkerboard()),
-                new Sphere<Shiny>(new Vec3(0.0f, 1.0f, -0.25f), 1.0f, new Shiny()),
-                new Sphere<Shiny>(new Vec3(-1.0f, 0.5f, 1.5f), 0.5f, new Shiny()),
+                new Plane(new Vec3(0.0f, 1.0f, 0.0f), 0.0f, Checkerboard.Create()),
+                new Sphere(new Vec3(0.0f, 1.0f, -0.25f), 1.0f, Shiny.Create()),
+                new Sphere(new Vec3(-1.0f, 0.5f, 1.5f), 0.5f, Shiny.Create()),
             });
 
             _lights = new[]

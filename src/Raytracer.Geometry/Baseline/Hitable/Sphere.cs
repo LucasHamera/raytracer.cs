@@ -1,26 +1,27 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using Raytracer.Geometry.Baseline.Surfaces;
 using Raytracer.Geometry.Common;
 
 namespace Raytracer.Geometry.Baseline.Hitable
 {
-    public readonly struct Sphere<TSurface> : IHitable
-        where TSurface : struct, ISurface<float, Vec3, Color>
+    public readonly struct Sphere : IHitable
     {
         private readonly Vec3 _centre;
         private readonly float _radius2;
+        private readonly SurfaceTemplate<float, Vec3, Color> _surface;
 
-        public Sphere(in Vec3 centre, in float radius, in TSurface surface) : this()
+        public Sphere(in Vec3 centre, in float radius, in SurfaceTemplate<float, Vec3, Color> surface) : this()
         {
             _centre = centre;
             _radius2 = radius * radius;
-            Surface = surface;
+            _surface = surface;
         }
 
-        public ISurface<float, Vec3, Color> Surface
+        public SurfaceTemplate<float, Vec3, Color> Surface
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get;
+            get => _surface;
         }
 
         public Optional<Intersection> Intersect(in Ray ray)

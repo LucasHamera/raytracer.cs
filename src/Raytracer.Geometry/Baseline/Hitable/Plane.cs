@@ -1,25 +1,26 @@
 ﻿using System.Runtime.CompilerServices;
+using Raytracer.Geometry.Baseline.Surfaces;
 using Raytracer.Geometry.Common;
 
 namespace Raytracer.Geometry.Baseline.Hitable
 {
-    public readonly struct Plane<TSurface> : IHitable
-        where TSurface : struct, ISurface<float, Vec3, Color>
+    public readonly struct Plane : IHitable
     {
         private readonly Vec3 _normal;
         private readonly float _offset;
+        private readonly SurfaceTemplate<float, Vec3, Color> _surface;
 
-        public Plane(in Vec3 normal, in float offset, in TSurface surface) : this()
+        public Plane(in Vec3 normal, in float offset, in SurfaceTemplate<float, Vec3, Color> surface) : this()
         {
             _normal = normal;
             _offset = offset;
-            Surface = surface;
+            _surface = surface;
         }
 
-        public ISurface<float, Vec3, Color> Surface
+        public SurfaceTemplate<float, Vec3, Color> Surface
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get;
+            get => _surface;
         }
 
         public Optional<Intersection> Intersect(in Ray ray)

@@ -9,7 +9,7 @@ namespace Raytracer.Benchmark
         private MyScene _myScene;
         private Canvas.Canvas _canvas;
 
-        [Params(512)]
+        [Params(1024)]
         public int RenderSize
         {
             get;
