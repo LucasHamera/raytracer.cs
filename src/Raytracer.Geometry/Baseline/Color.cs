@@ -1,4 +1,6 @@
-﻿namespace Raytracer.Geometry.Baseline
+﻿using System.Runtime.CompilerServices;
+
+namespace Raytracer.Geometry.Baseline
 {
     public readonly struct Color
     {
@@ -13,8 +15,8 @@
             B = b;
         }
 
-        private static Color _white = new Color(1.0f,1.0f,1.0f);
-        public static ref Color White 
+        private static Color _white = new Color(1.0f, 1.0f, 1.0f);
+        public static ref Color White
             => ref _white;
 
         private static Color _gray = new Color(0.5f, 0.5f, 0.5f);
@@ -31,7 +33,10 @@
         public static ref Color DefaultColor
             => ref _black;
         
-        public static Color operator + (Color a, Color b) => new Color(a.R + b.R, a.G + b.G, a.B + b.B);
-        public static Color operator * (Color a, Color b) => new Color(a.R * b.R, a.G * b.G, a.B * b.B);
+        [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+        public static Color operator +(Color a, Color b) => new Color(a.R + b.R, a.G + b.G, a.B + b.B);
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+        public static Color operator *(Color a, Color b) => new Color(a.R * b.R, a.G * b.G, a.B * b.B);
     }
 }

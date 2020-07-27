@@ -1,11 +1,12 @@
 ﻿using System;
-using Raytracer.Geometry.Common;
+using System.Runtime.CompilerServices;
 
 namespace Raytracer.Geometry.Baseline
 {
-    public struct BaselineGeometry : IGeometry<float, Vec3, Color>
+    public static class BaselineGeometry
     {
-        public readonly float Sqrt(in float value)
+        [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+        public static float Sqrt(in float value)
         {
             var curr = value;
             var prev = 0.0f;
@@ -19,7 +20,8 @@ namespace Raytracer.Geometry.Baseline
             return curr;
         }
 
-        public readonly float Pow(in float @base, int exp)
+        [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+        public static float Pow(in float @base, int exp)
         {
             var val = 1.0f;
 
@@ -44,25 +46,32 @@ namespace Raytracer.Geometry.Baseline
             return val;
         }
 
-        public readonly float Floor(in float value) => (int) (value >= 0 ? value : value - 1.0f);
-
-        public readonly float Clamp(in float value, in float min, in float max)
+        [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+        public static float Floor(in float value) => (int) (value >= 0 ? value : value - 1.0f);
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+        public static float Clamp(in float value, in float min, in float max)
         {
             if (value < min) return min;
             if (value > max) return max;
             return value;
         }
 
-        public readonly float Dot(in Vec3 left, in Vec3 right) => left.X * right.X + left.Y * right.Y + left.Z * right.Z;
-        public readonly float Mag(in Vec3 vector) => Sqrt(Dot(vector, vector));
+        [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+        public static float Dot(in Vec3 left, in Vec3 right) => left.X * right.X + left.Y * right.Y + left.Z * right.Z;
 
-        public readonly Vec3 Norm(in Vec3 vector)
+        [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+        public static float Mag(in Vec3 vector) => Sqrt(Dot(vector, vector));
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+        public static Vec3 Norm(in Vec3 vector)
         {
             var mag = Mag(vector);
             return new Vec3(vector.X / mag, vector.Y / mag, vector.Z / mag);
         }
 
-        public readonly Vec3 Cross(in Vec3 v1, in Vec3 v2)
+        [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+        public static Vec3 Cross(in Vec3 v1, in Vec3 v2)
         {
             return new Vec3(
                 v1.Y * v2.Z - v1.Z * v2.Y,
@@ -70,8 +79,9 @@ namespace Raytracer.Geometry.Baseline
                 v1.X * v2.Y - v1.Y * v2.X
             );
         }
-
-        public readonly Color Scale(in float value, in Color color)
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+        public static Color Scale(in float value, in Color color)
         {
             return new Color(
                 color.R * value,
