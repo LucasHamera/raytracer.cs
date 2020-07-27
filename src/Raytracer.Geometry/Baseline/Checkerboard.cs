@@ -7,15 +7,13 @@ namespace Raytracer.Geometry.Baseline
     {
         public int Roughness
         {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
             get => 150;
         }
 
         public ref Color Diffuse(in Vec3 position)
         {
-            var geometry = new BaselineGeometry();
-
-            if ((int) (geometry.Floor(position.Z) + geometry.Floor(position.X)) % 2 != 0)
+            if ((int) (BaselineGeometry.Floor(position.Z) + BaselineGeometry.Floor(position.X)) % 2 != 0)
             {
                 return ref Color.White;
             }
@@ -27,10 +25,8 @@ namespace Raytracer.Geometry.Baseline
 
         public float Reflect(in Vec3 position)
         {
-            var geometry = new BaselineGeometry();
-
-            return (int) (geometry.Floor(position.Z) + geometry.Floor(position.X)) % 2 != 0 
-                ? 0.1f 
+            return (int) (BaselineGeometry.Floor(position.Z) + BaselineGeometry.Floor(position.X)) % 2 != 0
+                ? 0.1f
                 : 0.7f;
         }
     }

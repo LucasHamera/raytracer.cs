@@ -10,11 +10,9 @@
         public Camera(in Vec3 position, in Vec3 lookAt)
         {
             Position = position;
-
-            var geometry = new BaselineGeometry();
-            Forward = geometry.Norm(lookAt - position);
-            Right = 1.5f * geometry.Norm(geometry.Cross(Forward, new Vec3(0.0f, -1.0f, 0.0f)));
-            Up = 1.5f * geometry.Norm(geometry.Cross(Forward, Right));
+            Forward = BaselineGeometry.Norm(lookAt - position);
+            Right = 1.5f * BaselineGeometry.Norm(BaselineGeometry.Cross(Forward, new Vec3(0.0f, -1.0f, 0.0f)));
+            Up = 1.5f * BaselineGeometry.Norm(BaselineGeometry.Cross(Forward, Right));
         }
     }
 }
