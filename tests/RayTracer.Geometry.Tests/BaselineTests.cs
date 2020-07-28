@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using Raytracer.Geometry.Geometry;
 using Raytracer.Geometry.Models;
 using Xunit;
 
@@ -14,7 +13,7 @@ namespace RayTracer.Geometry.Tests
         [InlineData(4.0f, 2.0f)]
         public void Sqrt(float x, float expected)
         {
-            BaselineGeometry.Sqrt(x).Should().BeApproximately(expected, Precision);
+            Raytracer.Geometry.Geometries.Geometry.Sqrt(x).Should().BeApproximately(expected, Precision);
         }
 
         [Theory]
@@ -23,7 +22,7 @@ namespace RayTracer.Geometry.Tests
         [InlineData(4.0f, 2, 16.0f)]
         public void Pow(float @base, int exp, float expected)
         {
-            BaselineGeometry.Pow(@base, exp).Should().BeApproximately(expected, Precision);
+            Raytracer.Geometry.Geometries.Geometry.Pow(@base, exp).Should().BeApproximately(expected, Precision);
         }
 
         [Theory]
@@ -35,7 +34,7 @@ namespace RayTracer.Geometry.Tests
         [InlineData(-3.6f, -4.0f)]
         public void Floor(float x, float expected)
         {
-            BaselineGeometry.Floor(x).Should().BeApproximately(expected, Precision);
+            Raytracer.Geometry.Geometries.Geometry.Floor(x).Should().BeApproximately(expected, Precision);
         }
 
         [Theory]
@@ -44,7 +43,7 @@ namespace RayTracer.Geometry.Tests
         [InlineData(0.5f, 0.0f, 1.0f, 0.5f)]
         public void Clamp(float value, float min, float max, float expected)
         {
-            BaselineGeometry.Clamp(value, min, max).Should().BeApproximately(expected, Precision);
+            Raytracer.Geometry.Geometries.Geometry.Clamp(value, min, max).Should().BeApproximately(expected, Precision);
         }
 
         [Theory]
@@ -67,7 +66,7 @@ namespace RayTracer.Geometry.Tests
             var u = new Vec3(x1, y1, z1);
             var v = new Vec3(x2, y2, z2);
 
-            BaselineGeometry.Dot(u, v).Should().BeApproximately(expected, Precision);
+            Raytracer.Geometry.Geometries.Geometry.Dot(u, v).Should().BeApproximately(expected, Precision);
         }
 
         [Theory]
@@ -79,7 +78,7 @@ namespace RayTracer.Geometry.Tests
         )
         {
             var v = new Vec3(x, y, z);
-            BaselineGeometry.Mag(v).Should().BeApproximately(expected, Precision);
+            Raytracer.Geometry.Geometries.Geometry.Mag(v).Should().BeApproximately(expected, Precision);
         }
 
         [Theory]
@@ -97,7 +96,7 @@ namespace RayTracer.Geometry.Tests
         )
         {
             var v = new Vec3(x, y, z);
-            var result = BaselineGeometry.Norm(v);
+            var result = Raytracer.Geometry.Geometries.Geometry.Norm(v);
             result.X.Should().BeApproximately(expectedX, Precision);
             result.Y.Should().BeApproximately(expectedY, Precision);
             result.Z.Should().BeApproximately(expectedZ, Precision);
@@ -122,7 +121,7 @@ namespace RayTracer.Geometry.Tests
         {
             var u = new Vec3(x1, y1, z1);
             var v = new Vec3(x2, y2, z2);
-            var w = BaselineGeometry.Cross(u, v);
+            var w = Raytracer.Geometry.Geometries.Geometry.Cross(u, v);
 
             w.X.Should().BeApproximately(expectedX, Precision);
             w.Y.Should().BeApproximately(expectedY, Precision);
@@ -147,7 +146,7 @@ namespace RayTracer.Geometry.Tests
         )
         {
             var c = new Color(r, g, b);
-            var newColor = BaselineGeometry.Scale(scale, c);
+            var newColor = Raytracer.Geometry.Geometries.Geometry.Scale(scale, c);
 
             newColor.R.Should().BeApproximately(expectedR, Precision);
             newColor.G.Should().BeApproximately(expectedG, Precision);

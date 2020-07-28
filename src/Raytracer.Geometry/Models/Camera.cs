@@ -1,6 +1,4 @@
-﻿using Raytracer.Geometry.Geometry;
-
-namespace Raytracer.Geometry.Models
+﻿namespace Raytracer.Geometry.Models
 {
     public readonly struct Camera
     {
@@ -12,9 +10,9 @@ namespace Raytracer.Geometry.Models
         public Camera(in Vec3 position, in Vec3 lookAt)
         {
             Position = position;
-            Forward = BaselineGeometry.Norm(lookAt - position);
-            Right = 1.5f * BaselineGeometry.Norm(BaselineGeometry.Cross(Forward, new Vec3(0.0f, -1.0f, 0.0f)));
-            Up = 1.5f * BaselineGeometry.Norm(BaselineGeometry.Cross(Forward, Right));
+            Forward = Geometries.Geometry.Norm(lookAt - position);
+            Right = 1.5f * Geometries.Geometry.Norm(Geometries.Geometry.Cross(Forward, new Vec3(0.0f, -1.0f, 0.0f)));
+            Up = 1.5f * Geometries.Geometry.Norm(Geometries.Geometry.Cross(Forward, Right));
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using Raytracer.Geometry.Geometry;
 using Raytracer.Geometry.Models;
 using Raytracer.Geometry.Surfaces;
 using Raytracer.Geometry.Utils;
@@ -29,13 +28,13 @@ namespace Raytracer.Geometry.Hitable
         public Optional<Intersection> Intersect(in Ray ray)
         {
             var eo = _centre - ray.Start;
-            var v = BaselineGeometry.Dot(eo, ray.Direction);
+            var v = Geometries.Geometry.Dot(eo, ray.Direction);
             var distance = 0.0f;
 
             if (v >= 0.0) {
-                var disc = _radius2 - (BaselineGeometry.Dot(eo, eo) - v * v);
+                var disc = _radius2 - (Geometries.Geometry.Dot(eo, eo) - v * v);
                 if (disc >= 0.0) {
-                    distance = v - BaselineGeometry.Sqrt(disc);
+                    distance = v - Geometries.Geometry.Sqrt(disc);
                 }
             }
 
@@ -48,7 +47,7 @@ namespace Raytracer.Geometry.Hitable
 
         public Vec3 Normal(in Vec3 position)
         {
-            return BaselineGeometry.Norm(position - _centre);
+            return Geometries.Geometry.Norm(position - _centre);
         }
     }
 }

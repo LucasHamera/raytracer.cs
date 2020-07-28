@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using Raytracer.Canvas;
-using Raytracer.Geometry.Geometry;
+using Raytracer.Geometry.Geometries;
 using Raytracer.Geometry.Hitable;
 using Raytracer.Geometry.Models;
 using Raytracer.Geometry.Scenes;
@@ -51,7 +51,7 @@ namespace RayTracer
             var d = intersection.Ray.Direction;
             var pos = (intersection.Distance * d) + intersection.Ray.Start;
             var normal = intersection.Thing.Normal(pos);
-            var reflectDir = d - (2.0f * BaselineGeometry.Dot(normal, d) * normal);
+            var reflectDir = d - (2.0f * Geometry.Dot(normal, d) * normal);
             var naturalColor = Color.Background + NaturalColor(intersection.Thing, pos, normal, reflectDir, scene);
             var reflectedColor = depth >= MaxDepth
                 ? Color.Gray
@@ -61,7 +61,7 @@ namespace RayTracer
 
         private Color ReflectionColor(IHitable thing, in Vec3 pos, in Vec3 rd, MyScene scene, int depth)
         {
-            return BaselineGeometry.Scale(
+            return Geometry.Scale(
                 thing.Surface.Reflect(pos),
                 TraceRay(new Ray(pos, rd), scene, depth + 1)
             );
@@ -71,19 +71,19 @@ namespace RayTracer
             Light light)
         {
             var lightDir = light.Position - pos;
-            var lightDirNorm = BaselineGeometry.Norm(lightDir);
+            var lightDirNorm = Geometry.Norm(lightDir);
             var nearIntersection = TestRay(new Ray(pos, lightDirNorm), scene);
-            var isInShadow = nearIntersection.HasValue && nearIntersection.Value < BaselineGeometry.Mag(lightDir);
+            var isInShadow = nearIntersection.HasValue && nearIntersection.Value < Geometry.Mag(lightDir);
             if (isInShadow) return col;
 
-            var illumination = BaselineGeometry.Dot(lightDirNorm, normal);
+            var illumination = Geometry.Dot(lightDirNorm, normal);
             var lightColor = illumination > 0.0f
-                ? BaselineGeometry.Scale(illumination, light.Color)
+                ? Geometry.Scale(illumination, light.Color)
                 : Color.DefaultColor;
-            var specular = BaselineGeometry.Dot(lightDirNorm, BaselineGeometry.Norm(rayDir));
+            var specular = Geometry.Dot(lightDirNorm, Geometry.Norm(rayDir));
             var surf = thing.Surface;
             var specularColor = specular > 0.0f
-                ? BaselineGeometry.Scale(BaselineGeometry.Pow(specular, surf.Roughness), light.Color)
+                ? Geometry.Scale(Geometry.Pow(specular, surf.Roughness), light.Color)
                 : Color.DefaultColor;
 
             return col + (surf.Diffuse(pos) * lightColor + surf.Specular(pos) * specularColor);
@@ -102,7 +102,7 @@ namespace RayTracer
             var recenterX = (x - (width / 2.0f)) / 2.0f / width;
             var recenterY = -(y - (height / 2.0f)) / 2.0f / height;
 
-            return BaselineGeometry.Norm(cam.Forward + (recenterX * cam.Right + recenterY * cam.Up));
+            return Geometry.Norm(cam.Forward + (recenterX * cam.Right + recenterY * cam.Up));
         }
 
         public void Render(MyScene scene, Canvas canvas)

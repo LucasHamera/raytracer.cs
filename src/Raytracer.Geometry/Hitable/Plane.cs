@@ -1,5 +1,4 @@
 ﻿using System.Runtime.CompilerServices;
-using Raytracer.Geometry.Geometry;
 using Raytracer.Geometry.Models;
 using Raytracer.Geometry.Surfaces;
 using Raytracer.Geometry.Utils;
@@ -27,11 +26,11 @@ namespace Raytracer.Geometry.Hitable
 
         public Optional<Intersection> Intersect(in Ray ray)
         {
-            var denom = BaselineGeometry.Dot(_normal, ray.Direction);
+            var denom = Geometries.Geometry.Dot(_normal, ray.Direction);
             if (denom > 0.0f)
                 return new Optional<Intersection>();
             
-            var distance = (BaselineGeometry.Dot(_normal, ray.Start) + _offset) / (-denom);
+            var distance = (Geometries.Geometry.Dot(_normal, ray.Start) + _offset) / (-denom);
             var intersection = new Intersection(
                 this, ray, distance
             );
