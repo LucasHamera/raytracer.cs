@@ -1,4 +1,6 @@
-﻿namespace Raytracer.Geometry.Baseline
+﻿using Raytracer.Geometry.Geometry;
+
+namespace Raytracer.Geometry.Models
 {
     public readonly struct Camera
     {

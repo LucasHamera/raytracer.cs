@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using Raytracer.Geometry.Common;
+using Raytracer.Geometry.Geometry;
+using Raytracer.Geometry.Models;
+using Raytracer.Geometry.Surfaces;
+using Raytracer.Geometry.Utils;
 
-namespace Raytracer.Geometry.Baseline.Hitable
+namespace Raytracer.Geometry.Hitable
 {
     public readonly struct Sphere<TSurface> : IHitable
         where TSurface : struct, ISurface<float, Vec3, Color>

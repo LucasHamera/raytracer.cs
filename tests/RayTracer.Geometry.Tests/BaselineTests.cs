@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
-using Raytracer.Geometry.Baseline;
+using Raytracer.Geometry.Geometry;
+using Raytracer.Geometry.Models;
 using Xunit;
 
 namespace RayTracer.Geometry.Tests

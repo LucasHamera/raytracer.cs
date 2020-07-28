@@ -1,9 +1,10 @@
 using System.Threading.Tasks;
 using Raytracer.Canvas;
-using Raytracer.Geometry.Baseline;
-using Raytracer.Geometry.Baseline.Hitable;
-using Raytracer.Geometry.Baseline.Scenes;
-using Raytracer.Geometry.Common;
+using Raytracer.Geometry.Geometry;
+using Raytracer.Geometry.Hitable;
+using Raytracer.Geometry.Models;
+using Raytracer.Geometry.Scenes;
+using Raytracer.Geometry.Utils;
 
 namespace RayTracer
 {

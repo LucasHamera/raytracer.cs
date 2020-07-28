@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using Raytracer.Geometry.Models;
 
-namespace Raytracer.Geometry.Baseline
+namespace Raytracer.Geometry.Geometry
 {
     public static class BaselineGeometry
     {

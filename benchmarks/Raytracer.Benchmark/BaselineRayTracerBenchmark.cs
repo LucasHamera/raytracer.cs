@@ -1,5 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
-using Raytracer.Geometry.Baseline.Scenes;
+using Raytracer.Geometry.Scenes;
 
 namespace Raytracer.Benchmark
 {
