@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using Raytracer.Geometry.Models;
 
-namespace Raytracer.Geometry.Baseline
+namespace Raytracer.Geometry.Geometries
 {
-    public static class BaselineGeometry
+    public static class GeometryMath
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
         public static float Sqrt(in float value)

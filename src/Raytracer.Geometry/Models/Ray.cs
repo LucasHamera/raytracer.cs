@@ -1,4 +1,4 @@
-﻿namespace Raytracer.Geometry.Baseline
+﻿namespace Raytracer.Geometry.Models
 {
     public readonly struct Ray
     {

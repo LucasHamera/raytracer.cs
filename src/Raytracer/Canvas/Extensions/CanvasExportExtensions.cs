@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
-using Color = Raytracer.Geometry.Baseline.Color;
+using Color = Raytracer.Geometry.Models.Color;
 
 namespace Raytracer.Canvas.Extensions
 {

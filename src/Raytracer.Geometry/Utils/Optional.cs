@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Raytracer.Geometry.Common
+namespace Raytracer.Geometry.Utils
 {
     public readonly struct Optional<T>
     {

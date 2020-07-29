@@ -1,7 +1,10 @@
 ﻿using System.Runtime.CompilerServices;
-using Raytracer.Geometry.Common;
+using Raytracer.Geometry.Geometries;
+using Raytracer.Geometry.Models;
+using Raytracer.Geometry.Surfaces;
+using Raytracer.Geometry.Utils;
 
-namespace Raytracer.Geometry.Baseline.Hitable
+namespace Raytracer.Geometry.Hitable
 {
     public readonly struct Plane<TSurface> : IHitable
         where TSurface : struct, ISurface<float, Vec3, Color>
@@ -24,11 +27,11 @@ namespace Raytracer.Geometry.Baseline.Hitable
 
         public Optional<Intersection> Intersect(in Ray ray)
         {
-            var denom = BaselineGeometry.Dot(_normal, ray.Direction);
+            var denom = GeometryMath.Dot(_normal, ray.Direction);
             if (denom > 0.0f)
                 return new Optional<Intersection>();
             
-            var distance = (BaselineGeometry.Dot(_normal, ray.Start) + _offset) / (-denom);
+            var distance = (GeometryMath.Dot(_normal, ray.Start) + _offset) / (-denom);
             var intersection = new Intersection(
                 this, ray, distance
             );

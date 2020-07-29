@@ -1,7 +1,9 @@
 ﻿using System.Runtime.CompilerServices;
-using Raytracer.Geometry.Common;
+using Raytracer.Geometry.Models;
+using Raytracer.Geometry.Surfaces;
+using Raytracer.Geometry.Utils;
 
-namespace Raytracer.Geometry.Baseline.Hitable
+namespace Raytracer.Geometry.Hitable
 {
     public interface IHitable
     {

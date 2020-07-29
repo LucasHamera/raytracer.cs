@@ -1,7 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
-using Raytracer.Geometry.Common;
+using Raytracer.Geometry.Geometries;
+using Raytracer.Geometry.Models;
 
-namespace Raytracer.Geometry.Baseline
+namespace Raytracer.Geometry.Surfaces
 {
     public readonly struct Checkerboard : ISurface<float, Vec3, Color>
     {
@@ -13,7 +14,7 @@ namespace Raytracer.Geometry.Baseline
 
         public ref Color Diffuse(in Vec3 position)
         {
-            if ((int) (BaselineGeometry.Floor(position.Z) + BaselineGeometry.Floor(position.X)) % 2 != 0)
+            if ((int) (GeometryMath.Floor(position.Z) + GeometryMath.Floor(position.X)) % 2 != 0)
             {
                 return ref Color.White;
             }
@@ -25,7 +26,7 @@ namespace Raytracer.Geometry.Baseline
 
         public float Reflect(in Vec3 position)
         {
-            return (int) (BaselineGeometry.Floor(position.Z) + BaselineGeometry.Floor(position.X)) % 2 != 0
+            return (int) (GeometryMath.Floor(position.Z) + GeometryMath.Floor(position.X)) % 2 != 0
                 ? 0.1f
                 : 0.7f;
         }
