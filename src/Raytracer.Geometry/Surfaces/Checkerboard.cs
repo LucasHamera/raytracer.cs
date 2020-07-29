@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using Raytracer.Geometry.Geometries;
 using Raytracer.Geometry.Models;
 
 namespace Raytracer.Geometry.Surfaces
@@ -13,7 +14,7 @@ namespace Raytracer.Geometry.Surfaces
 
         public ref Color Diffuse(in Vec3 position)
         {
-            if ((int) (Geometries.Geometry.Floor(position.Z) + Geometries.Geometry.Floor(position.X)) % 2 != 0)
+            if ((int) (GeometryMath.Floor(position.Z) + GeometryMath.Floor(position.X)) % 2 != 0)
             {
                 return ref Color.White;
             }
@@ -25,7 +26,7 @@ namespace Raytracer.Geometry.Surfaces
 
         public float Reflect(in Vec3 position)
         {
-            return (int) (Geometries.Geometry.Floor(position.Z) + Geometries.Geometry.Floor(position.X)) % 2 != 0
+            return (int) (GeometryMath.Floor(position.Z) + GeometryMath.Floor(position.X)) % 2 != 0
                 ? 0.1f
                 : 0.7f;
         }

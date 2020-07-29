@@ -4,7 +4,7 @@ using Raytracer.Geometry.Models;
 
 namespace Raytracer.Geometry.Geometries
 {
-    public static class Geometry
+    public static class GeometryMath
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
         public static float Sqrt(in float value)
