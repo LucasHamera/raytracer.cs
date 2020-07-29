@@ -1,3 +1,27 @@
 ﻿@page "/"
+@using Raytracer.Geometry.Scenes
+@using Raytracer.Canvas
+@using global::RayTracer.Blazor.Models
+@inject RayTracer RayTracer
 
 <h1>Hello, world!</h1>
+
+<InputNumber id="width" @bind-Value="RenderOptions.Width" />
+<InputNumber id="height" @bind-Value="RenderOptions.Height" />
+
+<button class="btn btn-primary" @onclick="Render">
+    Render
+</button>
+
+@code {
+    public RenderOptions RenderOptions { get; } = new RenderOptions();
+
+    public string Image { get; set; }
+
+    private void Render(MouseEventArgs e)
+    {
+        var scene = new MyScene();
+        var canvas = new Canvas(RenderOptions.Width, RenderOptions.Height);
+        RayTracer.Render(scene, canvas);
+    }
+}
