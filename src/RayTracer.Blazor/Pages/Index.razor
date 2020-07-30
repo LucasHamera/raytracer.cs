@@ -4,9 +4,10 @@
 @using Raytracer.Canvas
 @using System.Diagnostics
 @using global::RayTracer.Blazor.CanvasConverter
-@inject RayTracer RayTracer
+@using Raytracer
+@inject BaseRayTracer RayTracer
 
-    <h1>Ray Tracer in Blazor!</h1>
+<h1>Ray Tracer in Blazor!</h1>
 
 <EditForm Model="@_renderOptions" OnValidSubmit="Render">
     <DataAnnotationsValidator />

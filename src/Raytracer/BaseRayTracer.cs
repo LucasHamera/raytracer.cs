@@ -1,14 +1,12 @@
-using System.Threading.Tasks;
-using Raytracer.Canvas;
-using Raytracer.Geometry.Geometries;
+﻿using Raytracer.Geometry.Geometries;
 using Raytracer.Geometry.Hitable;
 using Raytracer.Geometry.Models;
 using Raytracer.Geometry.Scenes;
 using Raytracer.Geometry.Utils;
 
-namespace RayTracer
+namespace Raytracer
 {
-    public class RayTracer
+    public class BaseRayTracer
     {
         private Optional<Intersection> Intersect(in Ray ray, in MyScene scene)
         {
@@ -105,9 +103,9 @@ namespace RayTracer
             return GeometryMath.Norm(cam.Forward + (recenterX * cam.Right + recenterY * cam.Up));
         }
 
-        public void Render(MyScene scene, Canvas canvas)
+        public void Render(MyScene scene, Canvas.Canvas canvas)
         {
-            Parallel.For(0, canvas.Height, y =>
+            for (int y = 0; y < canvas.Height; y++)
             {
                 var height = canvas.Height;
                 var width = canvas.Width;
@@ -118,7 +116,7 @@ namespace RayTracer
                     var color = TraceRay(new Ray(scene.Camera.Position, point), scene, 0);
                     canvas[x, y] = color;
                 }
-            });
+            }
         }
     }
 }
