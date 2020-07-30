@@ -1,27 +1,59 @@
 ﻿@page "/"
+@using global::RayTracer.Blazor.Models
 @using Raytracer.Geometry.Scenes
 @using Raytracer.Canvas
-@using global::RayTracer.Blazor.Models
+@using Raytracer.Canvas.Extensions
+@using System.Diagnostics
 @inject RayTracer RayTracer
 
 <h1>Hello, world!</h1>
 
-<InputNumber id="width" @bind-Value="RenderOptions.Width" />
-<InputNumber id="height" @bind-Value="RenderOptions.Height" />
+<EditForm Model="@_renderOptions" OnValidSubmit="Render">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
-<button class="btn btn-primary" @onclick="Render">
-    Render
-</button>
+    <p>
+        <label>
+            Width:
+            <InputNumber @bind-Value="_renderOptions.Width" />
+        </label>
+    </p>
+
+    <p>
+        <label>
+            Weight:
+            <InputNumber @bind-Value="_renderOptions.Height" />
+        </label>
+    </p>
+
+    <button type="submit">Render</button>
+</EditForm>
+
+<img src="@Image" alt="render" width="512" height="512" style="border: 5px solid black;"/>
+
+<p>
+    <label>
+        Render time: @RenderTimeMs [ms]
+    </label>
+</p>
 
 @code {
-    public RenderOptions RenderOptions { get; } = new RenderOptions();
+    private readonly RenderOptions _renderOptions = new RenderOptions();
 
-    public string Image { get; set; }
+    private string Image { get; set; }
+    private long RenderTimeMs { get; set; } = 0;
 
-    private void Render(MouseEventArgs e)
+    private void Render()
     {
         var scene = new MyScene();
-        var canvas = new Canvas(RenderOptions.Width, RenderOptions.Height);
+        var canvas = new Canvas(_renderOptions.Width, _renderOptions.Height);
+
+        var st = Stopwatch.StartNew();
         RayTracer.Render(scene, canvas);
+        var elapsed = st.ElapsedMilliseconds;
+
+
+        var canvasBase64 = canvas.ToBase64();
+        Image = $"data:image/png;base64, {canvasBase64}";
     }
 }

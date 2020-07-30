@@ -107,7 +107,7 @@ namespace RayTracer
 
         public void Render(MyScene scene, Canvas canvas)
         {
-            Parallel.For(0, canvas.Height, y =>
+            for (int y = 0; y < canvas.Height; y++)
             {
                 var height = canvas.Height;
                 var width = canvas.Width;
@@ -118,7 +118,19 @@ namespace RayTracer
                     var color = TraceRay(new Ray(scene.Camera.Position, point), scene, 0);
                     canvas[x, y] = color;
                 }
-            });
+            }
+            //Parallel.For(0, canvas.Height, y =>
+            //{
+            //    var height = canvas.Height;
+            //    var width = canvas.Width;
+
+            //    for (int x = 0; x < width; x++)
+            //    {
+            //        var point = Point(width, height, x, y, scene.Camera);
+            //        var color = TraceRay(new Ray(scene.Camera.Position, point), scene, 0);
+            //        canvas[x, y] = color;
+            //    }
+            //});
         }
     }
 }
