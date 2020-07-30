@@ -11,6 +11,9 @@ namespace RayTracer.Blazor.CanvasConverter
         [StructLayout(LayoutKind.Explicit, Pack = 1)]
         public readonly struct BMPHeader
         {
+            private const short HeaderSignature = 0x4D42;
+            private const short HeaderBitmapInfoHeaderSize = 40;
+
             [FieldOffset(0)]
             public readonly short Signature;
             [FieldOffset(2)]
@@ -55,11 +58,11 @@ namespace RayTracer.Blazor.CanvasConverter
                 int importantColorsNumber
             )
             {
-                Signature = 0x4D42;
+                Signature = HeaderSignature;
                 FileSize = fileSize;
                 Reserved = 0;
-                Offset = 54;
-                BitmapInfoHeaderSize = 40;
+                Offset = Marshal.SizeOf<BMPHeader>();
+                BitmapInfoHeaderSize = HeaderBitmapInfoHeaderSize;
                 Width = width;
                 Height = height;
                 PlanesNumber = 1;
