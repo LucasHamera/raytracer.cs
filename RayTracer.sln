@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmarks", "benchmarks", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raytracer.Benchmark", "benchmarks\Raytracer.Benchmark\Raytracer.Benchmark.csproj", "{9704E157-F3DB-418B-B168-EDBF482D7A63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracer.Blazor", "src\RayTracer.Blazor\RayTracer.Blazor.csproj", "{29CA549B-18DC-4D96-BD3D-8997B356A7DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayTracer.Blazor", "src\RayTracer.Blazor\RayTracer.Blazor.csproj", "{29CA549B-18DC-4D96-BD3D-8997B356A7DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,8 +75,8 @@ Global
 		{29CA549B-18DC-4D96-BD3D-8997B356A7DE}.Debug|x64.Build.0 = Debug|Any CPU
 		{29CA549B-18DC-4D96-BD3D-8997B356A7DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29CA549B-18DC-4D96-BD3D-8997B356A7DE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{29CA549B-18DC-4D96-BD3D-8997B356A7DE}.Release|x64.ActiveCfg = Release|Any CPU
-		{29CA549B-18DC-4D96-BD3D-8997B356A7DE}.Release|x64.Build.0 = Release|Any CPU
+		{29CA549B-18DC-4D96-BD3D-8997B356A7DE}.Release|x64.ActiveCfg = Release|x64
+		{29CA549B-18DC-4D96-BD3D-8997B356A7DE}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

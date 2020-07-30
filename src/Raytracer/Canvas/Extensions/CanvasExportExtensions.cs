@@ -1,7 +1,5 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
 using System.Runtime.InteropServices;
 using Color = Raytracer.Geometry.Models.Color;
 
@@ -62,22 +60,6 @@ namespace Raytracer.Canvas.Extensions
             try
             {
                 bitmap.Save(path);
-            }
-            finally
-            {
-                bitmap.Dispose();
-            }
-        }
-
-        public static string ToBase64(this Canvas canvas)
-        {
-            canvas.ToBitmap(out var bitmap);
-            try
-            {
-                using var memoryStream = new MemoryStream();
-                bitmap.Save(memoryStream, ImageFormat.Jpeg);
-                var bytes = memoryStream.ToArray();
-                return Convert.ToBase64String(bytes);
             }
             finally
             {

@@ -29,4 +29,8 @@
     <ProjectReference Include="..\Raytracer.Geometry\Raytracer.Geometry.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Canvas\Converter\" />
+  </ItemGroup>
+
 </Project>
