@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmarks", "benchmarks", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raytracer.Benchmark", "benchmarks\Raytracer.Benchmark\Raytracer.Benchmark.csproj", "{9704E157-F3DB-418B-B168-EDBF482D7A63}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayTracer.Blazor", "src\RayTracer.Blazor\RayTracer.Blazor.csproj", "{29CA549B-18DC-4D96-BD3D-8997B356A7DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,14 @@ Global
 		{9704E157-F3DB-418B-B168-EDBF482D7A63}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9704E157-F3DB-418B-B168-EDBF482D7A63}.Release|x64.ActiveCfg = Release|x64
 		{9704E157-F3DB-418B-B168-EDBF482D7A63}.Release|x64.Build.0 = Release|x64
+		{29CA549B-18DC-4D96-BD3D-8997B356A7DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29CA549B-18DC-4D96-BD3D-8997B356A7DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29CA549B-18DC-4D96-BD3D-8997B356A7DE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{29CA549B-18DC-4D96-BD3D-8997B356A7DE}.Debug|x64.Build.0 = Debug|Any CPU
+		{29CA549B-18DC-4D96-BD3D-8997B356A7DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29CA549B-18DC-4D96-BD3D-8997B356A7DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29CA549B-18DC-4D96-BD3D-8997B356A7DE}.Release|x64.ActiveCfg = Release|x64
+		{29CA549B-18DC-4D96-BD3D-8997B356A7DE}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +87,7 @@ Global
 		{E4229E30-5DCD-4C27-8B1D-733BDA9641C8} = {588142FE-3748-4B27-85CB-5A174C6A59CC}
 		{EDA71033-11CD-448C-8626-E1A3C4009F50} = {139FA229-6194-4E73-84E7-796E7A89BCD9}
 		{9704E157-F3DB-418B-B168-EDBF482D7A63} = {C46F6C9C-3E13-45D7-B0DD-8C11851CA577}
+		{29CA549B-18DC-4D96-BD3D-8997B356A7DE} = {588142FE-3748-4B27-85CB-5A174C6A59CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3B4FE03-716F-4490-ACA7-3E39AC06D991}

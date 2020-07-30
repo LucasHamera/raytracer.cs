@@ -1,0 +1,65 @@
+﻿@page "/"
+@using global::RayTracer.Blazor.Models
+@using Raytracer.Geometry.Scenes
+@using Raytracer.Canvas
+@using System.Diagnostics
+@using global::RayTracer.Blazor.CanvasConverter
+@using Raytracer
+@inject BaseRayTracer RayTracer
+
+<h1>Ray Tracer in Blazor!</h1>
+
+<EditForm Model="@_renderOptions" OnValidSubmit="Render">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <label>
+            Width:
+            <InputNumber @bind-Value="_renderOptions.Width" />
+        </label>
+    </p>
+
+    <p>
+        <label>
+            Height:
+            <InputNumber @bind-Value="_renderOptions.Height" />
+        </label>
+    </p>
+
+    <button type="submit">Generate</button>
+</EditForm>
+
+<br />
+@if (!string.IsNullOrWhiteSpace(Image))
+{
+    <img src="@Image" alt="render" width="512" height="512"/>
+
+    <br />
+    <p>
+        <label>
+            Render time: @RenderTimeMs [ms]
+        </label>
+    </p>
+}
+
+@code {
+    private readonly RenderOptions _renderOptions = new RenderOptions();
+
+    private string Image { get; set; }
+    private long RenderTimeMs { get; set; } = 0;
+
+    private void Render()
+    {
+        var scene = new MyScene();
+        var canvas = new Canvas(_renderOptions.Width, _renderOptions.Height);
+
+        var st = Stopwatch.StartNew();
+        RayTracer.Render(scene, canvas);
+        RenderTimeMs = st.ElapsedMilliseconds;
+
+
+        var canvasBase64 = CanvasToBase64Converter.Convert(canvas);
+        Image = $"data:image/png;base64, {canvasBase64}";
+    }
+}
