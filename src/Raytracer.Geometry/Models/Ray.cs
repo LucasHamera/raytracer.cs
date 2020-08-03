@@ -11,4 +11,19 @@
             Direction = direction;
         }
     }
+
+    public readonly struct Rays
+    {
+        public readonly Vec3s Start;
+        public readonly Vec3s Direction;
+
+        public Rays(
+            Vec3s start,
+            Vec3s direction
+        )
+        {
+            Start = start;
+            Direction = direction;
+        }
+    }
 }
