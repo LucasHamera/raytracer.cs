@@ -93,7 +93,7 @@ namespace Raytracer.Geometry.SSE.Geometries
             {
                 // (value < min) return min
                 var resultBlend = Sse41.BlendVariable(value, min, lessValuesMask);
-                // value > max) return max
+                // (value > max) return max
                 return Sse41.BlendVariable(resultBlend, max, greaterValuesMask);
             }
 

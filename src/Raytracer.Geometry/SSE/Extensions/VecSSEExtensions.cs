@@ -33,9 +33,9 @@ namespace Raytracer.Geometry.SSE.Extensions
 
             return Vector128.Create(
                 (int) vector.GetElement(0),
-                (int)vector.GetElement(1),
-                (int)vector.GetElement(2),
-                (int)vector.GetElement(3)
+                (int) vector.GetElement(1),
+                (int) vector.GetElement(2),
+                (int) vector.GetElement(3)
             );
         }
 
