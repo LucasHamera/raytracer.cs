@@ -14,7 +14,7 @@ namespace Raytracer.Geometry.SSE.Geometries
             => Sse.Sqrt(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-        public static Vector128<float> Pow(in Vector128<float> @base, int exp)
+        public static Vector128<float> Pow(in Vector128<float> @base,  int exp)
         {
             var val = Vector128.Create(1.0f);
 
@@ -43,6 +43,17 @@ namespace Raytracer.Geometry.SSE.Geometries
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+        public static Vector128<float> Pow(in Vector128<float> @base, in Vector128<int> exp)
+        {
+            return Vector128.Create(
+                (float)Math.Pow(@base.GetElement(0), exp.GetElement(0)),
+                (float)Math.Pow(@base.GetElement(1), exp.GetElement(1)),
+                (float)Math.Pow(@base.GetElement(2), exp.GetElement(2)),
+                (float)Math.Pow(@base.GetElement(3), exp.GetElement(3))
+            );
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
         public static Vector128<float> Floor(in Vector128<float> value)
         {
             if (Sse41.IsSupported)
@@ -67,8 +78,8 @@ namespace Raytracer.Geometry.SSE.Geometries
             }
 
             return result
-                .AsInt32()
-                .AsSingle();
+                .ConvertToInt()
+                .ConvertToFloat();
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
@@ -104,8 +115,8 @@ namespace Raytracer.Geometry.SSE.Geometries
         public static Vector128<float> Dot(in VecSSE left, in VecSSE right)
         {
             var xMul = left.X.Multiply(right.X);
-            var yMul = left.X.Multiply(right.X);
-            var zMul = left.X.Multiply(right.X);
+            var yMul = left.Y.Multiply(right.Y);
+            var zMul = left.Z.Multiply(right.Z);
 
             return xMul
                 .Add(yMul)
@@ -143,7 +154,7 @@ namespace Raytracer.Geometry.SSE.Geometries
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-        public static ColorSSE Scale(in float value, in ColorSSE color)
+        public static ColorSSE Scale(in Vector128<float> value, in ColorSSE color)
         {
             return new ColorSSE(
                 color.R.Multiply(value),
