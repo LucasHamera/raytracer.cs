@@ -20,7 +20,7 @@ namespace RayTracer.Geometry.Tests.SSE.Geometries
             var result = GeometryMathSSE.Sqrt(x);
             
             result.Should()
-                .BeApproximately(x, expected, Precision);
+                .BeApproximately(result, expected, Precision);
         }
 
         [Fact]
@@ -136,7 +136,7 @@ namespace RayTracer.Geometry.Tests.SSE.Geometries
             var vZ = Vector128.Create(1.0f, 1.0f, 1.0f, 1.0f);
             var v = new VecSSE(vX, vY, vZ);
 
-            var expectedX = Vector128.Create(0.0f, 0.0f, 0.0f, 0.0f);
+            var expectedX = Vector128.Create(0.0f, 5.0f, 0.0f, 5.0f);
             var expectedY = Vector128.Create(-1.0f, -2.0f, -1.0f, -2.0f);
             var expectedZ = Vector128.Create(1.0f, -3.0f, 1.0f, -3.0f);
 
@@ -151,8 +151,8 @@ namespace RayTracer.Geometry.Tests.SSE.Geometries
         public void Scale()
         {
             var cR = Vector128.Create(1.0f, 1.0f, 1.0f, 1.0f);
-            var cG = Vector128.Create(1.0f, 1.0f, 1.0f, 1.0f);
-            var cB = Vector128.Create(1.0f, 1.0f, 1.0f, 1.0f);
+            var cG = Vector128.Create(0.0f, 0.3f, 0.0f, 0.3f);
+            var cB = Vector128.Create(0.0f, 0.25f, 0.0f, 0.25f);
             var c = new ColorSSE(cR, cG, cB);
 
             var expectedR = Vector128.Create(1.0f, 2.0f, 1.0f, 2.0f);
