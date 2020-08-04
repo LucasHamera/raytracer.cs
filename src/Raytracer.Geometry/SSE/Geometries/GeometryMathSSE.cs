@@ -55,32 +55,7 @@ namespace Raytracer.Geometry.SSE.Geometries
 
         [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
         public static Vector128<float> Floor(in Vector128<float> value)
-        {
-            if (Sse41.IsSupported)
-                return Sse41.Floor(value);
-
-            var zeroVector = Vector128<float>.Zero;
-            // value >= 0 ?
-            var greater = Sse.CompareGreaterThan(value, zeroVector);
-            // value
-            var result = Sse.And(greater, value);
-            // value - 1.0f
-            var notGreaterMask = Sse.Xor(greater, Vector128.Create(1.0f));
-            var notGraterValue = value.Subtract(Vector128.Create(-1.0f));
-            var notGraterResult = Sse.And(notGraterValue, notGreaterMask);
-
-            result = result.Add(notGraterResult);
-
-            if (Sse2.IsSupported)
-            {
-                var resultInt = Sse2.ConvertToVector128Int32(result);
-                return resultInt.AsSingle();
-            }
-
-            return result
-                .ConvertToInt()
-                .ConvertToFloat();
-        }
+            => Sse41.Floor(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
         public static Vector128<float> Clamp(in Vector128<float> value, in Vector128<float> min,
@@ -89,26 +64,9 @@ namespace Raytracer.Geometry.SSE.Geometries
             var lessValuesMask = Sse.CompareLessThan(value, min);
             var greaterValuesMask = Sse.CompareGreaterThan(value, max);
 
-            if (Sse41.IsSupported)
-            {
-                // (value < min) return min
-                var resultBlend = Sse41.BlendVariable(value, min, lessValuesMask);
-                // (value > max) return max
-                return Sse41.BlendVariable(resultBlend, max, greaterValuesMask);
-            }
-
-            var greaterLessMask = Sse.And(lessValuesMask, greaterValuesMask);
-
-            // min values
-            var resultLess = Sse.And(lessValuesMask, min);
-            // max values
-            var resultGreater = Sse.And(greaterValuesMask, max);
-            // another values
-            var anotherValues = Sse.AndNot(greaterLessMask, value);
-
-            return resultLess
-                .Add(resultGreater)
-                .Add(anotherValues);
+            var resultBlend = Sse41.BlendVariable(value, min, lessValuesMask);
+            // (value > max) return max
+            return Sse41.BlendVariable(resultBlend, max, greaterValuesMask);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
