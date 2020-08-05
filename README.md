@@ -11,7 +11,7 @@ TODO
 --------
 - ~~Reimplementation~~
 - ~~Blazor project - v1.1~~,
-- Support for multiple cores - v1.1,
+- ~~Support for multiple cores - v1.1~~,
 - Support for multiple cores in batch mode - v1.2,     
 - Support for SSE instructions - all coordinates in Vector128 (Vector128{x<sub>0</sub>,y<sub>0</sub>,z<sub>0</sub>,1}) - v2.0,
 - Support for AVX instructions - all coordinates in Vector256 - v2.1,
