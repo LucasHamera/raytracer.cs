@@ -19,7 +19,8 @@ namespace RayTracer.Geometry.Tests.SSE.Geometries
 
             var result = GeometryMathSSE.Sqrt(x);
             
-            result.Should()
+            result
+                .Should()
                 .BeApproximately(result, expected, Precision);
         }
 

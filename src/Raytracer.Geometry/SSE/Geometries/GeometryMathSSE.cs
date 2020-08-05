@@ -14,7 +14,7 @@ namespace Raytracer.Geometry.SSE.Geometries
             => Sse.Sqrt(value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
-        public static Vector128<float> Pow(in Vector128<float> @base,  int exp)
+        public static Vector128<float> Pow(in Vector128<float> @base, int exp)
         {
             var val = Vector128.Create(1.0f);
 
