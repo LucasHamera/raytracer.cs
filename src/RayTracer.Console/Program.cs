@@ -1,6 +1,6 @@
 ﻿using Raytracer.Canvas;
 using Raytracer.Canvas.Extensions;
-using Raytracer.Geometry.Baseline.Scenes;
+using Raytracer.Geometry.Scenes;
 
 namespace RayTracer.Console
 {
