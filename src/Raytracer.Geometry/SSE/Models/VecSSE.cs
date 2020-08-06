@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics;
-using Raytracer.Geometry.Models;
+using Raytracer.Geometry.Base.Models;
 using Raytracer.Geometry.SSE.Extensions;
 
 namespace Raytracer.Geometry.SSE.Models

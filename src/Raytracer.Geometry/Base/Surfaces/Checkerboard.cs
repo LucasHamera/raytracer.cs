@@ -1,8 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
-using Raytracer.Geometry.Geometries;
-using Raytracer.Geometry.Models;
+using Raytracer.Geometry.Base.Geometries;
+using Raytracer.Geometry.Base.Models;
 
-namespace Raytracer.Geometry.Surfaces
+namespace Raytracer.Geometry.Base.Surfaces
 {
     public readonly struct Checkerboard : ISurface<float, Vec3, Color>
     {
