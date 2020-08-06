@@ -8,6 +8,24 @@ namespace Raytracer
 {
     public class BaseRayTracer
     {
+        private readonly int _height;
+        private readonly int _width;
+
+        private readonly float _halfHeight;
+        private readonly float _halfWidth;
+
+        public BaseRayTracer(
+            int height,
+            int width
+        )
+        {
+            _height = height;
+            _width = width;
+
+            _halfHeight = _height / 2.0f;
+            _halfWidth = _width / 2.0f;
+        }
+
         private Optional<Intersection> Intersect(in Ray ray, in MyScene scene)
         {
             var closestDist = float.MaxValue;
@@ -95,28 +113,29 @@ namespace Raytracer
             return col;
         }
 
-        private Vec3 Point(int width, int height, int x, int y, in Camera cam)
+        private Vec3 Point(int x, int y, in Camera cam)
         {
-            var recenterX = (x - (width / 2.0f)) / 2.0f / width;
-            var recenterY = -(y - (height / 2.0f)) / 2.0f / height;
+            var recenterX = (x - _halfWidth) / 2.0f / _width;
+            var recenterY = -(y - _halfHeight) / 2.0f / _height;
 
             return GeometryMath.Norm(cam.Forward + (recenterX * cam.Right + recenterY * cam.Up));
         }
 
-        public void Render(MyScene scene, Canvas.Canvas canvas)
+        public Canvas.Canvas Render(MyScene scene)
         {
-            for (int y = 0; y < canvas.Height; y++)
-            {
-                var height = canvas.Height;
-                var width = canvas.Width;
+            var canvas = new Canvas.Canvas(_width, _height);
 
-                for (int x = 0; x < width; x++)
+            for (int y = 0; y < _height; y++)
+            {
+                for (int x = 0; x < _width; x++)
                 {
-                    var point = Point(width, height, x, y, scene.Camera);
+                    var point = Point(x, y, scene.Camera);
                     var color = TraceRay(new Ray(scene.Camera.Position, point), scene, 0);
                     canvas[x, y] = color;
                 }
             }
+
+            return canvas;
         }
     }
 }

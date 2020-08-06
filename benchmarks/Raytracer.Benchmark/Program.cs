@@ -6,7 +6,7 @@ namespace Raytracer.Benchmark
     {
         static void Main(string[] args)
         {
-            BenchmarkRunner.Run<BaselineRayTracerBenchmark>();
+            BenchmarkRunner.Run<RayTracerBenchmarks>();
         }
     }
 }
