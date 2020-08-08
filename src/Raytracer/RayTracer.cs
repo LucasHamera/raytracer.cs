@@ -1,11 +1,10 @@
 using System.Runtime.Intrinsics;
 using Raytracer.Canvas;
-using Raytracer.Geometry.Base.Geometries;
-using Raytracer.Geometry.Base.Models;
 using Raytracer.Geometry.Scenes;
 using Raytracer.Geometry.SSE.Extensions;
 using Raytracer.Geometry.SSE.Geometries;
 using Raytracer.Geometry.SSE.Models;
+using Raytracer.Math;
 
 namespace RayTracer
 {
@@ -22,7 +21,7 @@ namespace RayTracer
         private readonly Vector128<float> _halfWidthVector;
 
         public RayTracer(
-            int height, 
+            int height,
             int width
         )
         {
@@ -35,14 +34,6 @@ namespace RayTracer
             _halfHeightVector = Vector128.Create(_halfHeight);
             _halfWidth = _width / 2.0f;
             _halfWidthVector = Vector128.Create(_halfWidth);
-        }
-
-        private Vec3 Point(in int x, in int y, in Camera cam)
-        {
-            var recenterX = (x - (_halfWidth)) / 2.0f / _width;
-            var recenterY = -(y - (_halfHeight)) / 2.0f / _height;
-
-            return GeometryMath.Norm(cam.Forward + (recenterX * cam.Right + recenterY * cam.Up));
         }
 
         private VecSSE Point(in Vector128<float> x, in Vector128<float> y, in CameraSSE cam)
@@ -75,15 +66,15 @@ namespace RayTracer
                 for (; x < _width; x += 4)
                 {
                     var xVector = Vector128.Create(x, x + 1.0f, x + 2.0f, x + 3.0f);
-                    var yVector = Vector128.Create(1.0f *  y);
+                    var yVector = Vector128.Create(1.0f * y);
 
                     var pointVector = Point(xVector, yVector, cameraSSE);
-
                 }
 
                 for (; x < _width; x++)
                 {
-                    var point = Point(x, y, scene.Camera);
+                    var point = ScalarRayTracerMath.Point(
+                        x, y, _width, _height, _halfWidth, _halfHeight, scene.Camera);
                 }
             }
 
