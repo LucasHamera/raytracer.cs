@@ -1,7 +1,5 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Raytracer;
 
 namespace RayTracer.Blazor
 {
@@ -11,8 +9,6 @@ namespace RayTracer.Blazor
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
-
-            builder.Services.AddScoped<BaseRayTracer>();
 
             await builder.Build().RunAsync();
         }

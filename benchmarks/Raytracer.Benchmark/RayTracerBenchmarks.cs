@@ -3,11 +3,11 @@ using Raytracer.Geometry.Scenes;
 
 namespace Raytracer.Benchmark
 {
-    public class BaselineRayTracerBenchmark
+    public class RayTracerBenchmarks
     {
+        private BaseRayTracer _baseRayTracer;
         private RayTracer.RayTracer _rayTracer;
         private MyScene _myScene;
-        private Canvas.Canvas _canvas;
 
         [Params(512)]
         public int RenderSize
@@ -16,20 +16,24 @@ namespace Raytracer.Benchmark
             set;
         }
 
-
         [GlobalSetup]
         public void Setup()
         {
-            _rayTracer = new RayTracer.RayTracer();
+            _baseRayTracer = new BaseRayTracer(RenderSize, RenderSize);
+            _rayTracer = new RayTracer.RayTracer(RenderSize, RenderSize);
             _myScene = new MyScene();
-            _canvas = new Canvas.Canvas(RenderSize, RenderSize);
-
         }
 
         [Benchmark]
-        public void Baseline()
+        public void Base()
         {
-            _rayTracer.Render(_myScene, _canvas);
+            var canvas = _baseRayTracer.Render(_myScene);
+        }
+
+        [Benchmark]
+        public void Improved()
+        {
+            var canvas = _rayTracer.Render(_myScene);
         }
     }
 }

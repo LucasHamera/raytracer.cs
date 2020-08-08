@@ -1,5 +1,4 @@
-﻿using Raytracer.Canvas;
-using Raytracer.Canvas.Extensions;
+﻿using Raytracer.Canvas.Extensions;
 using Raytracer.Geometry.Scenes;
 
 namespace RayTracer.Console
@@ -8,10 +7,9 @@ namespace RayTracer.Console
     {
         public static void Main()
         {
-            var tracer = new RayTracer();
-            var canvas = new Canvas(512, 512);
+            var tracer = new RayTracer(512, 512);
             var scene = new MyScene();
-            tracer.Render(scene, canvas);
+            var canvas = tracer.Render(scene);
             canvas.ToFile("output.png");
         }
     }

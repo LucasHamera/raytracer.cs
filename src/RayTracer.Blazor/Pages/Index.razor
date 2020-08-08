@@ -5,7 +5,6 @@
 @using System.Diagnostics
 @using global::RayTracer.Blazor.CanvasConverter
 @using Raytracer
-@inject BaseRayTracer RayTracer
 
 <h1>Ray Tracer in Blazor!</h1>
 
@@ -51,11 +50,15 @@
 
     private void Render()
     {
+        var rayTracer = new BaseRayTracer(
+            _renderOptions.Height,
+            _renderOptions.Width
+        );
+
         var scene = new MyScene();
-        var canvas = new Canvas(_renderOptions.Width, _renderOptions.Height);
 
         var st = Stopwatch.StartNew();
-        RayTracer.Render(scene, canvas);
+        var canvas = rayTracer.Render(scene);
         RenderTimeMs = st.ElapsedMilliseconds;
 
 

@@ -1,124 +1,94 @@
-using System.Threading.Tasks;
+using System.Runtime.Intrinsics;
 using Raytracer.Canvas;
 using Raytracer.Geometry.Geometries;
-using Raytracer.Geometry.Hitable;
 using Raytracer.Geometry.Models;
 using Raytracer.Geometry.Scenes;
-using Raytracer.Geometry.Utils;
+using Raytracer.Geometry.SSE.Extensions;
+using Raytracer.Geometry.SSE.Geometries;
+using Raytracer.Geometry.SSE.Models;
+using Camera = Raytracer.Geometry.Models.Camera;
 
 namespace RayTracer
 {
     public class RayTracer
     {
-        private Optional<Intersection> Intersect(in Ray ray, in MyScene scene)
+        private readonly int _height;
+        private readonly Vector128<float> _heightVector;
+        private readonly int _width;
+        private readonly Vector128<float> _widthVector;
+
+        private readonly float _halfHeight;
+        private readonly Vector128<float> _halfHeightVector;
+        private readonly float _halfWidth;
+        private readonly Vector128<float> _halfWidthVector;
+
+        public RayTracer(
+            int height, 
+            int width
+        )
         {
-            var closestDist = float.MaxValue;
-            var closestInter = new Optional<Intersection>();
+            _height = height;
+            _heightVector = Vector128.Create(1.0f * _height);
+            _width = width;
+            _widthVector = Vector128.Create(1.0f * _width);
 
-            foreach (var thing in scene.Things)
-            {
-                var inter = thing.Intersect(ray);
-                if (inter.HasValue && inter.Value.Distance < closestDist)
-                {
-                    closestDist = inter.Value.Distance;
-                    closestInter = inter;
-                }
-            }
-
-            return closestInter;
+            _halfHeight = _height / 2.0f;
+            _halfHeightVector = Vector128.Create(_halfHeight);
+            _halfWidth = _width / 2.0f;
+            _halfWidthVector = Vector128.Create(_halfWidth);
         }
 
-        private Optional<float> TestRay(in Ray ray, MyScene scene)
+        private Vec3 Point(in int x, in int y, in Camera cam)
         {
-            var intersection = Intersect(ray, scene);
-            return intersection.HasValue
-                ? new Optional<float>(intersection.Value.Distance)
-                : new Optional<float>();
-        }
-
-        private Color TraceRay(in Ray ray, MyScene scene, int depth)
-        {
-            var intersection = Intersect(ray, scene);
-            return intersection.HasValue
-                ? Shade(intersection.Value, scene, depth)
-                : Color.Background;
-        }
-
-        private const int MaxDepth = 5;
-
-        private Color Shade(in Intersection intersection, MyScene scene, int depth)
-        {
-            var d = intersection.Ray.Direction;
-            var pos = (intersection.Distance * d) + intersection.Ray.Start;
-            var normal = intersection.Thing.Normal(pos);
-            var reflectDir = d - (2.0f * GeometryMath.Dot(normal, d) * normal);
-            var naturalColor = Color.Background + NaturalColor(intersection.Thing, pos, normal, reflectDir, scene);
-            var reflectedColor = depth >= MaxDepth
-                ? Color.Gray
-                : ReflectionColor(intersection.Thing, pos, reflectDir, scene, depth);
-            return naturalColor + reflectedColor;
-        }
-
-        private Color ReflectionColor(IHitable thing, in Vec3 pos, in Vec3 rd, MyScene scene, int depth)
-        {
-            return GeometryMath.Scale(
-                thing.Surface.Reflect(pos),
-                TraceRay(new Ray(pos, rd), scene, depth + 1)
-            );
-        }
-
-        private Color AddLight(IHitable thing, in Vec3 pos, in Vec3 normal, in Vec3 rayDir, MyScene scene, Color col,
-            Light light)
-        {
-            var lightDir = light.Position - pos;
-            var lightDirNorm = GeometryMath.Norm(lightDir);
-            var nearIntersection = TestRay(new Ray(pos, lightDirNorm), scene);
-            var isInShadow = nearIntersection.HasValue && nearIntersection.Value < GeometryMath.Mag(lightDir);
-            if (isInShadow) return col;
-
-            var illumination = GeometryMath.Dot(lightDirNorm, normal);
-            var lightColor = illumination > 0.0f
-                ? GeometryMath.Scale(illumination, light.Color)
-                : Color.DefaultColor;
-            var specular = GeometryMath.Dot(lightDirNorm, GeometryMath.Norm(rayDir));
-            var surf = thing.Surface;
-            var specularColor = specular > 0.0f
-                ? GeometryMath.Scale(GeometryMath.Pow(specular, surf.Roughness), light.Color)
-                : Color.DefaultColor;
-
-            return col + (surf.Diffuse(pos) * lightColor + surf.Specular(pos) * specularColor);
-        }
-
-        private Color NaturalColor(IHitable thing, in Vec3 pos, in Vec3 norm, in Vec3 rd, MyScene scene)
-        {
-            var col = Color.DefaultColor;
-            foreach (var light in scene.Lights)
-                col = AddLight(thing, pos, norm, rd, scene, col, light);
-            return col;
-        }
-
-        private Vec3 Point(int width, int height, int x, int y, in Camera cam)
-        {
-            var recenterX = (x - (width / 2.0f)) / 2.0f / width;
-            var recenterY = -(y - (height / 2.0f)) / 2.0f / height;
+            var recenterX = (x - (_halfWidth)) / 2.0f / _width;
+            var recenterY = -(y - (_halfHeight)) / 2.0f / _height;
 
             return GeometryMath.Norm(cam.Forward + (recenterX * cam.Right + recenterY * cam.Up));
         }
 
-        public void Render(MyScene scene, Canvas canvas)
+        private VecSSE Point(in Vector128<float> x, in Vector128<float> y, in CameraSSE cam)
         {
-            Parallel.For(0, canvas.Height, y =>
-            {
-                var height = canvas.Height;
-                var width = canvas.Width;
+            var twosVector = Vector128.Create(2.0f);
 
-                for (int x = 0; x < width; x++)
+            var recenterX = x
+                .Subtract(_halfWidthVector)
+                .Divide(twosVector)
+                .Divide(_widthVector);
+
+            var recenterY = y
+                .Subtract(Vector128.Create(_halfWidth))
+                .Opposite()
+                .Divide(Vector128.Create(2.0f))
+                .Divide(Vector128.Create(1.0f * _height));
+
+            return GeometryMathSSE.Norm(cam.Forward + (recenterX * cam.Right + recenterY * cam.Up));
+        }
+
+        public Canvas Render(MyScene scene)
+        {
+            var canvas = new Canvas(_width, _height);
+            var cameraSSE = new CameraSSE(scene.Camera);
+
+            for (var y = 0; y < _height; y++)
+            {
+                var x = 0;
+
+                for (; x < _width; x += 4)
                 {
-                    var point = Point(width, height, x, y, scene.Camera);
-                    var color = TraceRay(new Ray(scene.Camera.Position, point), scene, 0);
-                    canvas[x, y] = color;
+                    var xVector = Vector128.Create(x, x + 1.0f, x + 2.0f, x + 3.0f);
+                    var yVector = Vector128.Create(1.0f *  y);
+
+                    var pointVector = Point(xVector, yVector, cameraSSE);
+
                 }
-            });
+
+                for (; x < _width; x++)
+                {
+                    var point = Point(x, y, scene.Camera);
+                }
+            }
+
+            return canvas;
         }
     }
 }
