@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using Raytracer.Canvas;
-using Raytracer.Geometry.Models;
+using Raytracer.Geometry.Base.Models;
 
 namespace RayTracer.Blazor.CanvasConverter
 {

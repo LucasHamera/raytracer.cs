@@ -1,12 +1,11 @@
 using System.Runtime.Intrinsics;
 using Raytracer.Canvas;
-using Raytracer.Geometry.Geometries;
-using Raytracer.Geometry.Models;
+using Raytracer.Geometry.Base.Geometries;
+using Raytracer.Geometry.Base.Models;
 using Raytracer.Geometry.Scenes;
 using Raytracer.Geometry.SSE.Extensions;
 using Raytracer.Geometry.SSE.Geometries;
 using Raytracer.Geometry.SSE.Models;
-using Camera = Raytracer.Geometry.Models.Camera;
 
 namespace RayTracer
 {

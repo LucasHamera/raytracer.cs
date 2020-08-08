@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace Raytracer.Geometry.Surfaces
+namespace Raytracer.Geometry.Base.Surfaces
 {
     public interface ISurface<out T, TVec3, TColor>
         where T : struct

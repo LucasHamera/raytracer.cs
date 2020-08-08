@@ -1,10 +1,10 @@
 ﻿using System.Runtime.CompilerServices;
-using Raytracer.Geometry.Geometries;
-using Raytracer.Geometry.Models;
-using Raytracer.Geometry.Surfaces;
+using Raytracer.Geometry.Base.Geometries;
+using Raytracer.Geometry.Base.Models;
+using Raytracer.Geometry.Base.Surfaces;
 using Raytracer.Geometry.Utils;
 
-namespace Raytracer.Geometry.Hitable
+namespace Raytracer.Geometry.Base.Hitable
 {
     public readonly struct Plane<TSurface> : IHitable
         where TSurface : struct, ISurface<float, Vec3, Color>

@@ -1,6 +1,6 @@
-﻿using Raytracer.Geometry.Geometries;
-using Raytracer.Geometry.Models;
 using Raytracer.Geometry.SSE.Extensions;
+﻿using Raytracer.Geometry.Base.Geometries;
+using Raytracer.Geometry.Base.Models;
 
 namespace Raytracer.Geometry.SSE.Models
 {

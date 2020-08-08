@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using Raytracer.Geometry.Models;
+using Raytracer.Geometry.Base.Models;
 
-namespace Raytracer.Geometry.Geometries
+namespace Raytracer.Geometry.Base.Geometries
 {
     public static class GeometryMath
     {

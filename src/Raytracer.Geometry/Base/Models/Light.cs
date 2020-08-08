@@ -1,4 +1,4 @@
-﻿namespace Raytracer.Geometry.Models
+﻿namespace Raytracer.Geometry.Base.Models
 {
     public readonly struct Light
     {

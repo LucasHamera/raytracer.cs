@@ -1,6 +1,6 @@
-﻿using Raytracer.Geometry.Hitable;
+﻿using Raytracer.Geometry.Base.Hitable;
 
-namespace Raytracer.Geometry.Models
+namespace Raytracer.Geometry.Base.Models
 {
     public readonly struct Intersection
     {
