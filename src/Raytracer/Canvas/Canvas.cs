@@ -1,5 +1,5 @@
 ﻿using System;
-using Raytracer.Geometry.Models;
+using Raytracer.Geometry.Base.Models;
 
 namespace Raytracer.Canvas
 {

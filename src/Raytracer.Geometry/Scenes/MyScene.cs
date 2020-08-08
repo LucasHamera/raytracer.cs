@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Immutable;
 using System.Runtime.CompilerServices;
-using Raytracer.Geometry.Hitable;
-using Raytracer.Geometry.Models;
-using Raytracer.Geometry.Surfaces;
+using Raytracer.Geometry.Base.Hitable;
+using Raytracer.Geometry.Base.Models;
+using Raytracer.Geometry.Base.Surfaces;
 
 namespace Raytracer.Geometry.Scenes
 {

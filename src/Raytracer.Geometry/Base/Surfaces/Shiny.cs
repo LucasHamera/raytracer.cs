@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
-using Raytracer.Geometry.Models;
+using Raytracer.Geometry.Base.Models;
 
-namespace Raytracer.Geometry.Surfaces
+namespace Raytracer.Geometry.Base.Surfaces
 {
     public readonly struct Shiny : ISurface<float, Vec3, Color>
     {

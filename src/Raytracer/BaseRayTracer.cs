@@ -1,6 +1,6 @@
-﻿using Raytracer.Geometry.Geometries;
-using Raytracer.Geometry.Hitable;
-using Raytracer.Geometry.Models;
+﻿using Raytracer.Geometry.Base.Geometries;
+using Raytracer.Geometry.Base.Hitable;
+using Raytracer.Geometry.Base.Models;
 using Raytracer.Geometry.Scenes;
 using Raytracer.Geometry.Utils;
 
