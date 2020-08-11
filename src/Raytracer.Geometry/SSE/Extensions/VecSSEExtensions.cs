@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
 using Raytracer.Geometry.Base.Models;
@@ -49,6 +50,26 @@ namespace Raytracer.Geometry.SSE.Extensions
             => Sse.Divide(left, right);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+        public static float HorizontalAdd(this in Vector128<float> vector)
+        {
+            // x3 + x2, x1 + x0, x3 + x2, x1 + x0
+            var firstAdd = Sse3.HorizontalAdd(vector, vector);
+            // x3 + x2 + x1 + x0, [...]
+            var secondAdd = Sse3.HorizontalAdd(firstAdd, firstAdd);
+            return secondAdd.GetElement(0);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+        public static int HorizontalAdd(this in Vector128<int> vector)
+        {
+            // x3 + x2, x1 + x0, x3 + x2, x1 + x0
+            var firstAdd = Ssse3.HorizontalAdd(vector, vector);
+            // x3 + x2 + x1 + x0, [...]
+            var secondAdd = Ssse3.HorizontalAdd(firstAdd, firstAdd);
+            return secondAdd.GetElement(0);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
         public static Vector128<int> ConvertToInt(this in Vector128<float> vector)
             => Sse2.ConvertToVector128Int32(vector);
 
@@ -63,5 +84,7 @@ namespace Raytracer.Geometry.SSE.Extensions
                 Vector128.Create(vec.Y),
                 Vector128.Create(vec.Z)
             );
+
+
     }
 }
