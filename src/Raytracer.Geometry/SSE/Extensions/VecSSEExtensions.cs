@@ -70,6 +70,16 @@ namespace Raytracer.Geometry.SSE.Extensions
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
+        public static Vector128<float> Modulo(
+            this in Vector128<float> left, in Vector128<float> right
+        )
+        {
+            var div = left.Divide(right);
+            var decimalPortion = div.Subtract(Sse41.RoundToNegativeInfinity(div));
+            return right.Multiply(decimalPortion);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining | MethodImplOptions.AggressiveOptimization)]
         public static Vector128<int> ConvertToInt(this in Vector128<float> vector)
             => Sse2.ConvertToVector128Int32(vector);
 
@@ -84,7 +94,6 @@ namespace Raytracer.Geometry.SSE.Extensions
                 Vector128.Create(vec.Y),
                 Vector128.Create(vec.Z)
             );
-
 
     }
 }
