@@ -11,6 +11,12 @@
 <EditForm Model="@_renderOptions" OnValidSubmit="Render">
     <DataAnnotationsValidator />
     <ValidationSummary />
+    <p>
+        <select @bind="@Version">
+            <option value="@BaseVersion">@BaseVersion</option>
+            <option value="@ParallelVersion">@ParallelVersion</option>
+        </select>
+    </p>
 
     <p>
         <label>
@@ -48,21 +54,42 @@
     private string Image { get; set; }
     private long RenderTimeMs { get; set; } = 0;
 
+    private const string BaseVersion = "Base";
+    private const string ParallelVersion = "Parallel";
+    private string Version { get; set; } = BaseVersion;
+
     private void Render()
     {
-        var rayTracer = new BaseRayTracer(
-            _renderOptions.Height,
-            _renderOptions.Width
-        );
-
+        var width = _renderOptions.Width;
+        var height = _renderOptions.Height;
         var scene = new MyScene();
 
         var st = Stopwatch.StartNew();
-        var canvas = rayTracer.Render(scene);
+        var canvas = Version.Equals(BaseVersion) 
+            ? BaseRender(scene, width, height) : ParallelRender(scene, width, height);
         RenderTimeMs = st.ElapsedMilliseconds;
-
 
         var canvasBase64 = CanvasToBase64Converter.Convert(canvas);
         Image = $"data:image/png;base64, {canvasBase64}";
+    }
+
+    private Canvas BaseRender(MyScene scene, int width, int height)
+    {
+        var rayTracer = new BaseRayTracer(
+            height,
+            width
+        );
+
+        return rayTracer.Render(scene);
+    }
+
+    private Canvas ParallelRender(MyScene scene, int width, int height)
+    {
+        var rayTracer = new ParallelRayTracer(
+            height,
+            width
+        );
+
+        return rayTracer.Render(scene);
     }
 }

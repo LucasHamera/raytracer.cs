@@ -6,6 +6,7 @@ namespace Raytracer.Benchmark
     public class RayTracerBenchmarks
     {
         private BaseRayTracer _baseRayTracer;
+        private ParallelRayTracer _parallelRayTracer;
         private RayTracer.RayTracer _rayTracer;
         private MyScene _myScene;
 
@@ -20,6 +21,7 @@ namespace Raytracer.Benchmark
         public void Setup()
         {
             _baseRayTracer = new BaseRayTracer(RenderSize, RenderSize);
+            _parallelRayTracer = new ParallelRayTracer(RenderSize, RenderSize);
             _rayTracer = new RayTracer.RayTracer(RenderSize, RenderSize);
             _myScene = new MyScene();
         }
@@ -28,6 +30,12 @@ namespace Raytracer.Benchmark
         public void Base()
         {
             var canvas = _baseRayTracer.Render(_myScene);
+        }
+
+        [Benchmark]
+        public void Parallel()
+        {
+            var canvas = _parallelRayTracer.Render(_myScene);
         }
 
         [Benchmark]
